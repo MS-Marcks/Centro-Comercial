@@ -1,0 +1,126 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.publicidad"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="16"
+9        android:targetSdkVersion="29" />
+10
+11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+11-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\debug\AndroidManifest.xml:5:5-77
+11-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\debug\AndroidManifest.xml:5:22-75
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:4:5-67
+12-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:4:22-64
+13    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+13-->[com.facebook.flipper:flipper:0.37.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\623174cd4892d9fb924ac44b102b25c0\flipper-0.37.0\AndroidManifest.xml:16:5-76
+13-->[com.facebook.flipper:flipper:0.37.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\623174cd4892d9fb924ac44b102b25c0\flipper-0.37.0\AndroidManifest.xml:16:22-73
+14    <uses-permission
+14-->[:react-native-beacons-manager] C:\PROYECTO_ARQUITECTURA\publicidad\node_modules\react-native-beacons-manager\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-68
+15        android:name="android.permission.BLUETOOTH"
+15-->[:react-native-beacons-manager] C:\PROYECTO_ARQUITECTURA\publicidad\node_modules\react-native-beacons-manager\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:22-65
+16        android:required="false" />
+16-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:13:9-33
+17    <uses-permission
+17-->[:react-native-beacons-manager] C:\PROYECTO_ARQUITECTURA\publicidad\node_modules\react-native-beacons-manager\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:5-74
+18        android:name="android.permission.BLUETOOTH_ADMIN"
+18-->[:react-native-beacons-manager] C:\PROYECTO_ARQUITECTURA\publicidad\node_modules\react-native-beacons-manager\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:22-71
+19        android:required="false" />
+19-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:16:9-33
+20    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+20-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:17:5-81
+20-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:17:22-78
+21
+22    <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION" />
+22-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:19:5-88
+22-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:19:29-85
+23
+24    <application
+24-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:6:5-25:19
+25        android:name="com.publicidad.MainApplication"
+25-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:7:7-38
+26        android:allowBackup="false"
+26-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:11:7-34
+27        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+27-->[androidx.core:core:1.1.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\639e914bfc1efa21e36199d3ff2c5eef\core-1.1.0\AndroidManifest.xml:24:18-86
+28        android:debuggable="true"
+29        android:icon="@mipmap/ic_launcher"
+29-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:9:7-41
+30        android:label="@string/app_name"
+30-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:8:7-39
+31        android:roundIcon="@mipmap/ic_launcher_round"
+31-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:10:7-52
+32        android:testOnly="true"
+33        android:theme="@style/AppTheme"
+33-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:12:7-38
+34        android:usesCleartextTraffic="true" >
+34-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\debug\AndroidManifest.xml:7:18-53
+35        <activity
+35-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:13:7-23:18
+36            android:name="com.publicidad.MainActivity"
+36-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:14:9-37
+37            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+37-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:16:9-86
+38            android:label="@string/app_name"
+38-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:15:9-41
+39            android:launchMode="singleTask"
+39-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:17:9-40
+40            android:windowSoftInputMode="adjustResize" >
+40-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:18:9-51
+41            <intent-filter>
+41-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:19:9-22:25
+42                <action android:name="android.intent.action.MAIN" />
+42-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:20:13-65
+42-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:20:21-62
+43
+44                <category android:name="android.intent.category.LAUNCHER" />
+44-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:21:13-73
+44-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:21:23-70
+45            </intent-filter>
+46        </activity>
+47        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+47-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:24:7-84
+47-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:24:17-81
+48
+49        <receiver android:name="org.altbeacon.beacon.startup.StartupBroadcastReceiver" >
+49-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:22:9-28:20
+49-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:22:19-87
+50            <intent-filter>
+50-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:23:13-27:29
+51                <action android:name="android.intent.action.BOOT_COMPLETED" />
+51-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:24:17-79
+51-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:24:25-76
+52                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+52-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:25:17-87
+52-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:25:25-84
+53                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+53-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:26:17-90
+53-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:26:25-87
+54            </intent-filter>
+55        </receiver>
+56
+57        <service
+57-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:30:9-35:38
+58            android:name="org.altbeacon.beacon.service.BeaconService"
+58-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:31:13-70
+59            android:enabled="true"
+59-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:32:13-35
+60            android:exported="false"
+60-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:33:13-37
+61            android:isolatedProcess="false"
+61-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:34:13-44
+62            android:label="beacon" />
+62-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:35:13-35
+63        <service
+63-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:36:9-39:40
+64            android:name="org.altbeacon.beacon.BeaconIntentProcessor"
+64-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:37:13-70
+65            android:enabled="true"
+65-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:38:13-35
+66            android:exported="false" />
+66-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:39:13-37
+67    </application>
+68
+69</manifest>
