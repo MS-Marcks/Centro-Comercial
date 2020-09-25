@@ -1,0 +1,35 @@
+{
+  "compras" : {
+    "_id" : [ {
+      "articulo" : "pan",
+      "descripcion" : "si compra mas de 10 panes 50 porciento de descuento en la proxima compra",
+      "fecha" : "hoy"
+    } ]
+  },
+  "estacionamiento" : [ {
+    "estado" : 0
+  }, {
+    "estado" : 0
+  }, {
+    "estado" : 0
+  } ],
+  "horario" : {
+    "_id" : {
+      "activo" : 0,
+      "nombre" : "Gerson Ramos",
+      "descripcion": "0"
+    },
+    "id_" : {
+      "activo" : 0,
+      "nombre" : "Gerson Ramos",
+      "descripcion": "0"
+    }
+  },
+  "sensortemhum" : [ {
+    "hum" : 0,
+    "temp" : 0
+  }, {
+    "hum" : 0,
+    "temp" : 0
+  } ]
+}
