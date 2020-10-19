@@ -79,7 +79,7 @@ CREATE TABLE `proveedor`
 CREATE TABLE `inventario111`
 (
   `id_inventario` Int NOT NULL AUTO_INCREMENT,
-  `stock` Char(20) NOT NULL,
+  `stock` Varchar(20) NOT NULL,
   PRIMARY KEY (`id_inventario`)
 )
 ;
