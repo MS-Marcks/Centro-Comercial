@@ -24,7 +24,6 @@ class ControllerRol {
 
     }
     static Search(req, res) {
-
         try {
             var connection = mysql.createConnection(Connect);
              connection.connect((err) => {
@@ -44,6 +43,26 @@ class ControllerRol {
         }
 
 
+    }
+
+    static SearchSingle(req, res) {
+        try {
+            var connection = mysql.createConnection(Connect);
+             connection.connect((err) => {
+              if (err) {
+                 res.json({ mensaje: err.stack });
+                return;
+              }
+              console.log('connected as id ' + connection.threadId);
+            });
+            connection.query("CALL sp_search_rol_single(?)",[req.params.id], function (error, results, fields) {
+                if (error) { res.json(error) };
+                connection.end();
+                res.json(results[0])
+            });
+        } catch (error) {
+            res.json(error);
+        }
     }
     
     static Update(req, res) {

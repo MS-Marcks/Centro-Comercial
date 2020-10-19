@@ -10,6 +10,13 @@ BEGIN
 	SELECT id_rol,rol FROM rol;
 END $
 
+
+DELIMITER $
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_rol_single`(in id INTEGER(11))
+BEGIN
+	SELECT id_rol,rol FROM rol WHERE id_rol=id;
+END $
+
 DELIMITER $
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_rol`(in pid_rol INTEGER(11),in prol VARCHAR(128))
 BEGIN
