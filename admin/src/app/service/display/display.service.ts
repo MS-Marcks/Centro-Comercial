@@ -19,7 +19,7 @@ export class DisplayService {
   GetIbeacoins(identifier: string): Observable<Ibeacoins> {
     return this.Http.get<Ibeacoins>(this.urlbaseIbeacoins + `/${identifier}`);
   }
-  GetTipo(id_tipo: string): Observable<Tipo> {
+  GetTipo(id_tipo: number): Observable<Tipo> {
     return this.Http.get<Tipo>(this.urlbaseTipo + `/${id_tipo}`);
   }
   Get(): Observable<Display[]> {
@@ -31,6 +31,7 @@ export class DisplayService {
   Delete(identifier: string, id_tipo: number): Observable<any> {
     return this.Http.delete<any>(this.urlbase + `/${identifier}/${id_tipo}`);
   }
+
 }
 
 

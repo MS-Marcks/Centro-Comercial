@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario/usuario';
 import { UsuarioService } from './../../service/usuario/usuario.service';
+import { Persona } from 'src/app/models/persona/persona';
+import { Rol } from 'src/app/models/rol/rol';
 
 @Component({
   selector: 'app-usuario',
@@ -13,7 +15,8 @@ export class UsuarioComponent implements OnInit {
   dataSource: Usuario[];
   displayedColumns = ['uuid', 'id_persona', 'primernombre', 'segundonombre', 'primerapellido', 'segundoapellido', 'usuario', 'rol', 'direccion', 'nit', 'telefono'];
   Forms: FormGroup;
-
+  personavalores: Persona;
+  rolvalores: Rol;
   estado = 0;
   eliminar = false;
   mensaje = 'CREAR';
@@ -43,17 +46,28 @@ export class UsuarioComponent implements OnInit {
     );
   }
   onSubmit(): void {
-    this.meessage = 'CARGANDO...';
+    if (this.Forms.value.uuid !== null && this.Forms.value.id_persona !== null && this.Forms.value.usuario !== null && this.Forms.value.pass !== null && this.Forms.value.id_rol !== null) {
+      if (typeof this.personavalores !== 'undefined' && typeof this.rolvalores !== 'undefined') {
+        this.meessage = 'CARGANDO...';
 
-    if (this.estado === 0) {
-      this.service.Post(this.Forms.value).subscribe(
-        (res) => {
-          this.meessage = res;
-          this.Get();
-          this.OnCancelar();
+        if (this.estado === 0) {
+          this.service.Post(this.Forms.value).subscribe(
+            (res) => {
+              this.personavalores = undefined;
+              this.rolvalores = undefined;
+              this.meessage = res;
+              this.Get();
+              this.OnCancelar();
+            }
+          );
         }
-      );
+      } else {
+        this.meessage = 'Verificar si la Persona y Rol existen!';
+      }
+    } else {
+      this.meessage = 'Debe de ingresar todos los valores';
     }
+
   }
   Onobtener(element): void {
     this.Forms.setValue(element);
@@ -83,6 +97,37 @@ export class UsuarioComponent implements OnInit {
       return false;
     } else {
       return true;
+    }
+  }
+
+  OnBuscarPersona(): void {
+
+    this.service.GetPersona(this.Forms.value.id_persona).subscribe(
+      (res) => {
+        this.personavalores = res;
+      }
+    );
+  }
+  OnValidarPersona(): boolean {
+    if (typeof this.personavalores !== 'undefined') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  OnBuscarRol(): void {
+
+    this.service.GetRol(this.Forms.value.id_rol).subscribe(
+      (res) => {
+        this.rolvalores = res;
+      }
+    );
+  }
+  OnValidarRol(): boolean {
+    if (typeof this.rolvalores !== 'undefined') {
+      return true;
+    } else {
+      return false;
     }
   }
 }

@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { Descripcion } from './../../models/descripcion/descripcion';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Inventario } from 'src/app/models/inventario/inventario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DescripcionService {
   private urlbase = 'http://localhost:3000/api/admin/descripcion';
+  private urlbaseinvetario = 'http://localhost:3000/api/admin/inventario';
   constructor(private Http: HttpClient) { }
 
   Get(): Observable<Descripcion[]> {
@@ -21,5 +23,8 @@ export class DescripcionService {
   }
   Delete(id: number): Observable<any> {
     return this.Http.delete<any>(this.urlbase + `/${id}`);
+  }
+  GetArticulo(id: number): Observable<Inventario>{
+    return this.Http.get<Inventario>(this.urlbaseinvetario + '/' + id);
   }
 }

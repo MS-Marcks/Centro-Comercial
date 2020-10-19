@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Usuario } from 'src/app/models/usuario/usuario';
 import { Horario } from './../../models/horario/horario';
 import { HorarioService } from './../../service/horario/horario.service';
 
@@ -14,7 +15,7 @@ export class HorarioComponent implements OnInit {
   dataSource: Horario[];
   displayedColumns = ['id_horario', 'uuid', 'hora_entrada', 'hora_salida', 'usuario', 'editar', 'eliminar'];
   Forms: FormGroup;
-
+  uservalores: Usuario;
   estado = 0;
   eliminar = false;
   mensaje = 'CREAR';
@@ -30,8 +31,8 @@ export class HorarioComponent implements OnInit {
       id_horario: null,
       uuid: [null, Validators.required],
       hora_entrada: [null, Validators.required],
-      hora_salida:[null, Validators.required],
-      usuario:null
+      hora_salida: [null, Validators.required],
+      usuario: null
     });
     this.Get();
   }
@@ -44,26 +45,39 @@ export class HorarioComponent implements OnInit {
     );
   }
   onSubmit(): void {
-    this.meessage = 'CARGANDO...';
+    if ( this.Forms.value.uuid !== null && this.Forms.value.hora_entrada !== null && this.Forms.value.hora_salida !== null) {
+      if (typeof this.uservalores !== 'undefined') {
+        this.meessage = 'CARGANDO...';
 
-    if (this.estado === 0) {
-      this.service.Post(this.Forms.value).subscribe(
-        (res) => {
-          this.meessage = res;
-          this.Get();
-          this.OnCancelar();
+        if (this.estado === 0) {
+          this.service.Post(this.Forms.value).subscribe(
+            (res) => {
+              this.uservalores = undefined;
+              this.meessage = res;
+              this.Get();
+              this.OnCancelar();
+            }
+          );
+        } else if (this.estado === 1) {
+          console.log(this.Forms.value);
+          this.service.Update(this.Forms.value).subscribe(
+            (res) => {
+              this.uservalores = undefined;
+              this.meessage = res;
+              this.Get();
+              this.OnCancelar();
+            }
+          );
         }
-      );
-    } else if (this.estado === 1) {
-      console.log(this.Forms.value);
-      this.service.Update(this.Forms.value).subscribe(
-        (res) => {
-          this.meessage = res;
-          this.Get();
-          this.OnCancelar();
-        }
-      );
-    } else if (this.estado === 2) {
+      } else {
+        this.meessage = 'Verificar si el usuario existe!';
+      }
+    }else {
+      this.meessage = 'Debe de ingresar todos los valores';
+    }
+
+
+    if (this.estado === 2) {
       this.service.Delete(this.id).subscribe(
         (res) => {
           this.meessage = res;
@@ -100,6 +114,23 @@ export class HorarioComponent implements OnInit {
       return false;
     } else {
       return true;
+    }
+  }
+
+  OnBuscarUuid(): void {
+
+    this.service.GetUuid(this.Forms.value.uuid).subscribe(
+      (res) => {
+        this.uservalores = res;
+      }
+    );
+  }
+
+  OnValidarUuid(): boolean {
+    if (typeof this.uservalores !== 'undefined') {
+      return true;
+    } else {
+      return false;
     }
   }
 }

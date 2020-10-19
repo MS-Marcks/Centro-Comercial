@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Compra } from 'src/app/models/compra/compra';
+import { Inventario } from 'src/app/models/inventario/inventario';
 import { CompraService } from './../../service/compra/compra.service';
+import { Proveedor } from 'src/app/models/proveedor/proveedor';
 
 @Component({
   selector: 'app-compra',
@@ -13,7 +15,8 @@ export class CompraComponent implements OnInit {
   dataSource: Compra[];
   displayedColumns = ['id_compra', 'proveedor', 'articulo', 'cantidad', 'precio', 'total'];
   Forms: FormGroup;
-
+  articulovalores: Inventario;
+  proveedorvalores: Proveedor;
   estado = 0;
   eliminar = false;
   mensaje = 'CREAR';
@@ -42,16 +45,26 @@ export class CompraComponent implements OnInit {
     );
   }
   onSubmit(): void {
-    this.meessage = 'CARGANDO...';
+    if (this.Forms.value.id_proveedor !== null && this.Forms.value.id_articulo !== null && this.Forms.value.cantidad !== null && this.Forms.value.precio !== null) {
+      if (typeof this.articulovalores !== 'undefined' &&  typeof this.proveedorvalores !== 'undefined' ) {
+        this.meessage = 'CARGANDO...';
 
-    if (this.estado === 0) {
-      this.service.Post(this.Forms.value).subscribe(
-        (res) => {
-          this.meessage = res;
-          this.Get();
-          this.OnCancelar();
+        if (this.estado === 0) {
+          this.service.Post(this.Forms.value).subscribe(
+            (res) => {
+              this.articulovalores = undefined;
+              this.proveedorvalores = undefined;
+              this.meessage = res;
+              this.Get();
+              this.OnCancelar();
+            }
+          );
         }
-      );
+      }else {
+        this.meessage = 'Verificar si el Articulo y el Proveedor existen!';
+      }
+    }else {
+      this.meessage = 'Debe de ingresar todos los valores';
     }
   }
   Onobtener(element): void {
@@ -82,6 +95,36 @@ export class CompraComponent implements OnInit {
       return false;
     } else {
       return true;
+    }
+  }
+  OnBuscarArticulo(): void {
+    this.service.GetArticulo(this.Forms.value.id_articulo).subscribe(
+      (res) => {
+        this.articulovalores = res;
+      //  console.log(res);
+      }
+    );
+  }
+  OnValidarArticulo(): boolean {
+    if (typeof this.articulovalores !== 'undefined') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  OnBuscarProveedor(): void {
+    // console.log(this.Forms.value.id_articulo);
+    this.service.GetProveedor(this.Forms.value.id_proveedor).subscribe(
+      (res) => {
+        this.proveedorvalores = res;
+      }
+    );
+  }
+  OnValidarProveedor(): boolean {
+    if (typeof this.proveedorvalores !== 'undefined') {
+      return true;
+    } else {
+      return false;
     }
   }
 }

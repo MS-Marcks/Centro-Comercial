@@ -1,20 +1,63 @@
 <form [formGroup]="Forms" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="shipping-card">
     <mat-card-header>
-      <mat-card-title>Cliente</mat-card-title>
+      <mat-card-title>Asignacion Tienda a Usuario</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <ng-container *ngIf="!this.eliminar; else elseTemplate1">
         <div class="row">
           <div class="col">
-            <mat-form-field>
-              <input matInput placeholder="Id Tienda" formControlName="id_tienda">
-            </mat-form-field>
+            <div class="row">
+              <div class="col">
+                <mat-form-field>
+                  <input matInput placeholder="Id Tienda" formControlName="id_tienda">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <mat-card-actions>
+                  <button mat-raised-button color="primary" class="btn-block" (click)="OnBuscarTienda()" type="button">Buscar</button>
+                </mat-card-actions>
+              </div>
+              <div class="col"></div>
+              </div>
+              <div class="row">
+                <div class="col text-center">
+                  <ng-container *ngIf="OnValidarTienda();">
+                    <strong>{{tiendavalores.tienda}}</strong>
+                  </ng-container>
+                </div>
+                <div class="col"></div>
+              </div>
+
           </div>
           <div class="col">
-            <mat-form-field>
-              <input matInput placeholder="Uuid Usurio" formControlName="uuid">
-            </mat-form-field>
+            <div class="row">
+              <div class="col">
+                <mat-form-field>
+                  <input matInput placeholder="Uuid Usuario" formControlName="uuid">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <mat-card-actions>
+                  <button mat-raised-button color="primary" class="btn-block" (click)="OnBuscarUuid()" type="button">Buscar</button>
+                </mat-card-actions>
+              </div>
+              <div class="col"></div>
+              </div>
+              <div class="row">
+                <div class="col text-center">
+                  <ng-container *ngIf="OnValidarUuid();">
+                    <strong>{{uservalores.primernombre+' '+uservalores.segundonombre+'('+uservalores.uuid+')'}}</strong>
+                  </ng-container>
+                </div>
+                <div class="col"></div>
+              </div>
+
           </div>
         </div>
       </ng-container>
@@ -85,7 +128,7 @@
         <td mat-cell *matCellDef="let row">{{row.usuario}}</td>
       </ng-container>
 
-  
+
       <ng-container matColumnDef="eliminar">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Eliminar</th>
         <td mat-cell *matCellDef="let row"><button mat-raised-button color="primary"  (click)="OnEliminar(row)" type="submit">ELIMINAR</button></td>

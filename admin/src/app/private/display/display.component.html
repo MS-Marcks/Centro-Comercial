@@ -1,20 +1,60 @@
 <form [formGroup]="Forms" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="shipping-card">
     <mat-card-header>
-      <mat-card-title>Cliente</mat-card-title>
+      <mat-card-title>Asignacion Ibeacoins a tipo producto</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <ng-container *ngIf="!this.eliminar; else elseTemplate1">
         <div class="row">
           <div class="col">
-            <mat-form-field>
-              <input matInput placeholder="Identifier Ibeacoins" formControlName="identifier">
-            </mat-form-field>
+            <div class="row">
+              <div class="col">
+                <mat-form-field>
+                  <input matInput placeholder="Identifier Ibeacoins" formControlName="identifier">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <mat-card-actions>
+                  <button mat-raised-button color="primary" class="btn-block" (click)="OnBuscarIbeacoin()" type="button">Buscar</button>
+                </mat-card-actions>
+              </div>
+              </div>
+              <div class="row">
+                <div class="col text-center">
+                  <ng-container *ngIf="OnValidarIbeacoin();">
+                    <strong>{{ibeavalores.identifier}}</strong>
+                  </ng-container>
+                </div>
+              </div>
+
           </div>
           <div class="col">
-            <mat-form-field>
-              <input matInput placeholder="Id Tipo de Producto" formControlName="id_tipo">
-            </mat-form-field>
+            <div class="row">
+              <div class="col">
+                <mat-form-field>
+                  <input matInput placeholder="Id Tipo de Producto" formControlName="id_tipo">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <mat-card-actions>
+                  <button mat-raised-button color="primary" class="btn-block" (click)="OnBuscarTipo()" type="button">Buscar</button>
+                </mat-card-actions>
+              </div>
+              </div>
+              <div class="row">
+                <div class="col text-center">
+                  <ng-container *ngIf="OnValidarTipo();">
+                    <strong>{{tipovalores.tipo}}</strong>
+                  </ng-container>
+                </div>
+              </div>
+
           </div>
         </div>
       </ng-container>

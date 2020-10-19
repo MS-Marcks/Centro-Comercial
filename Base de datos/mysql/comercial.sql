@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 19-10-2020 a las 18:01:46
--- Versión del servidor: 5.7.24
+-- Tiempo de generación: 19-10-2020 a las 23:03:47
+-- Versión del servidor: 5.7.26
 -- Versión de PHP: 5.6.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -198,6 +198,13 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_inventario` ()  BEGIN
 	INNER JOIN tipo AS tp ON tp.id_tipo=i.id_tipo;
 END$$
 
+DROP PROCEDURE IF EXISTS `sp_search_inventario_single`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_inventario_single` (IN `id` INT(11))  BEGIN
+SELECT i.id_articulo,i.id_tienda,t.tienda,i.id_tipo,tp.tipo,i.articulo,i.descripcion,i.precio,i.stock,i.imagen FROM inventario AS i
+	INNER JOIN tienda AS t ON t.id_tienda=i.id_tienda
+	INNER JOIN tipo AS tp ON tp.id_tipo=i.id_tipo WHERE i.id_articulo=id;
+END$$
+
 DROP PROCEDURE IF EXISTS `sp_search_persona`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_persona` ()  BEGIN
 	SELECT id_persona,primernombre,segundonombre,primerapellido,segundoapellido,direccion,nit,telefono FROM persona;
@@ -213,9 +220,19 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_proveedor` ()  BEGIN
 	SELECT id_proveedor,razonsocial AS proveedor FROM proveedor;
 END$$
 
+DROP PROCEDURE IF EXISTS `sp_search_proveedor_single`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_proveedor_single` (IN `id` INTEGER(11))  BEGIN
+	SELECT id_proveedor,razonsocial AS proveedor FROM proveedor WHERE id_proveedor=id;
+END$$
+
 DROP PROCEDURE IF EXISTS `sp_search_rol`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_rol` ()  BEGIN
 	SELECT id_rol,rol FROM rol;
+END$$
+
+DROP PROCEDURE IF EXISTS `sp_search_rol_single`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_rol_single` (IN `id` INTEGER(11))  BEGIN
+	SELECT id_rol,rol FROM rol WHERE id_rol=id;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_search_tienda`$$
@@ -242,6 +259,11 @@ DROP PROCEDURE IF EXISTS `sp_search_usuario`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_usuario` ()  BEGIN
 	SELECT u.uuid,p.id_persona,p.primernombre,p.segundonombre,p.primerapellido,p.segundoapellido,p.direccion,p.nit,p.telefono,u.usuario,r.rol FROM persona AS p INNER JOIN usuario AS u ON p.id_persona =u.id_persona
     INNER JOIN rol AS r ON u.id_rol=r.id_rol;
+END$$
+
+DROP PROCEDURE IF EXISTS `sp_search_usuario_single`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_usuario_single` (IN `id` VARCHAR(32))  BEGIN
+	SELECT r.rol,u.uuid,p.id_persona,p.primernombre,p.segundonombre,p.primerapellido,p.segundoapellido,p.direccion,p.nit,p.telefono,u.usuario FROM persona AS p INNER JOIN usuario AS u ON p.id_persona =u.id_persona INNER JOIN rol AS r ON r.id_rol=u.id_rol WHERE u.uuid=id; 
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_update_descripcion`$$
@@ -295,6 +317,13 @@ CREATE TABLE IF NOT EXISTS `asigancion_tienda` (
   KEY `Relationship24` (`uuid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `asigancion_tienda`
+--
+
+INSERT INTO `asigancion_tienda` (`id_tienda`, `uuid`) VALUES
+(1, '1825410');
+
 -- --------------------------------------------------------
 
 --
@@ -326,6 +355,14 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   PRIMARY KEY (`id_cliente`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`id_cliente`, `usuario`, `clave`) VALUES
+(3, '26262626', '26262626'),
+(4, '10101010', '10101010');
+
 -- --------------------------------------------------------
 
 --
@@ -342,7 +379,14 @@ CREATE TABLE IF NOT EXISTS `compras` (
   PRIMARY KEY (`id_compra`),
   KEY `IX_Relationship1` (`id_proveedor`),
   KEY `IX_Relationship14` (`id_articulo`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `compras`
+--
+
+INSERT INTO `compras` (`id_compra`, `id_proveedor`, `id_articulo`, `cantidad`, `precio`) VALUES
+(1, 1, 1, 25, 11.00);
 
 -- --------------------------------------------------------
 
@@ -357,7 +401,14 @@ CREATE TABLE IF NOT EXISTS `descripcion` (
   `descripcion` varchar(256) NOT NULL,
   PRIMARY KEY (`id_descripcion`),
   KEY `IX_Relationship11` (`id_articulo`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `descripcion`
+--
+
+INSERT INTO `descripcion` (`id_descripcion`, `id_articulo`, `descripcion`) VALUES
+(1, 1, 'Leche deslactosada semidescremada 800 gramos ');
 
 -- --------------------------------------------------------
 
@@ -388,6 +439,13 @@ CREATE TABLE IF NOT EXISTS `display` (
   PRIMARY KEY (`id_tipo`,`identifier`),
   KEY `Relationship15` (`identifier`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `display`
+--
+
+INSERT INTO `display` (`identifier`, `id_tipo`) VALUES
+('1', 1);
 
 -- --------------------------------------------------------
 
@@ -423,7 +481,14 @@ CREATE TABLE IF NOT EXISTS `horario` (
   `hora_salida` varchar(20) NOT NULL,
   PRIMARY KEY (`id_horario`),
   KEY `IX_Relationship25` (`uuid`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `horario`
+--
+
+INSERT INTO `horario` (`id_horario`, `uuid`, `hora_entrada`, `hora_salida`) VALUES
+(1, '1825410', '9:00', '17:00');
 
 -- --------------------------------------------------------
 
@@ -439,6 +504,13 @@ CREATE TABLE IF NOT EXISTS `ibeacoins` (
   `minor` int(11) NOT NULL,
   PRIMARY KEY (`identifier`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ibeacoins`
+--
+
+INSERT INTO `ibeacoins` (`identifier`, `uuid`, `major`, `minor`) VALUES
+('1', '1', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -459,7 +531,14 @@ CREATE TABLE IF NOT EXISTS `inventario` (
   PRIMARY KEY (`id_articulo`),
   KEY `IX_Relationship12` (`id_tipo`),
   KEY `IX_Relationship28` (`id_tienda`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `inventario`
+--
+
+INSERT INTO `inventario` (`id_articulo`, `id_tienda`, `id_tipo`, `articulo`, `descripcion`, `precio`, `stock`, `imagen`) VALUES
+(1, 1, 1, 'leche', 'es leche de vaca', 11.00, 25, 'http://localhost:3000/files/1603135575896Letras.png.png');
 
 -- --------------------------------------------------------
 
@@ -491,7 +570,17 @@ CREATE TABLE IF NOT EXISTS `persona` (
   `nit` varchar(16) NOT NULL,
   `telefono` varchar(16) NOT NULL,
   PRIMARY KEY (`id_persona`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `persona`
+--
+
+INSERT INTO `persona` (`id_persona`, `primernombre`, `segundonombre`, `primerapellido`, `segundoapellido`, `direccion`, `nit`, `telefono`) VALUES
+(1, 'Yocelin', 'Sarai', 'Bonilla', 'Bonilla', 'Jalapa', '252525', '51227590'),
+(2, 'Victor', 'Isaias', 'Bonilla', 'Chalo', 'Jalapa', '181818', '41891552'),
+(3, 'Gerson', 'Arisai', 'Ramos', 'Portillo', 'Jalapa', '26262626', '25478595'),
+(4, 'Mayte', 'Loredana', 'Chalo', 'Martinez', 'Jalapa', '10101010', '54785253');
 
 -- --------------------------------------------------------
 
@@ -504,7 +593,14 @@ CREATE TABLE IF NOT EXISTS `proveedor` (
   `id_proveedor` int(11) NOT NULL AUTO_INCREMENT,
   `razonsocial` varchar(128) NOT NULL,
   PRIMARY KEY (`id_proveedor`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `proveedor`
+--
+
+INSERT INTO `proveedor` (`id_proveedor`, `razonsocial`) VALUES
+(1, 'Dos pinos inc. S.A');
 
 -- --------------------------------------------------------
 
@@ -517,7 +613,15 @@ CREATE TABLE IF NOT EXISTS `rol` (
   `id_rol` int(11) NOT NULL AUTO_INCREMENT,
   `rol` varchar(128) NOT NULL,
   PRIMARY KEY (`id_rol`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol` (`id_rol`, `rol`) VALUES
+(1, 'Administrador'),
+(2, 'Usuario');
 
 -- --------------------------------------------------------
 
@@ -530,7 +634,14 @@ CREATE TABLE IF NOT EXISTS `tienda` (
   `id_tienda` int(11) NOT NULL AUTO_INCREMENT,
   `tienda` varchar(128) NOT NULL,
   PRIMARY KEY (`id_tienda`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tienda`
+--
+
+INSERT INTO `tienda` (`id_tienda`, `tienda`) VALUES
+(1, 'Mustore');
 
 -- --------------------------------------------------------
 
@@ -543,7 +654,14 @@ CREATE TABLE IF NOT EXISTS `tipo` (
   `id_tipo` int(11) NOT NULL AUTO_INCREMENT,
   `tipo` varchar(128) NOT NULL,
   PRIMARY KEY (`id_tipo`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tipo`
+--
+
+INSERT INTO `tipo` (`id_tipo`, `tipo`) VALUES
+(1, 'lacteos');
 
 -- --------------------------------------------------------
 
@@ -562,6 +680,13 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   KEY `IX_Relationship32` (`id_persona`),
   KEY `IX_Relationship33` (`id_rol`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`uuid`, `id_persona`, `id_rol`, `usuario`, `pass`) VALUES
+('1825410', 1, 1, 'Yos', '1234');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

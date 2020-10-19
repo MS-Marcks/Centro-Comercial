@@ -1,7 +1,7 @@
 <form [formGroup]="Forms" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="shipping-card">
     <mat-card-header>
-      <mat-card-title>Cliente</mat-card-title>
+      <mat-card-title>Usuario</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <ng-container *ngIf="!this.eliminar; else elseTemplate1">
@@ -12,9 +12,29 @@
             </mat-form-field>
           </div>
           <div class="col">
-            <mat-form-field>
-              <input matInput placeholder="Id Persona" formControlName="id_persona">
-            </mat-form-field>
+            <div class="row">
+              <div class="col">
+                <mat-form-field>
+                  <input matInput placeholder="Id Persona" formControlName="id_persona">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <mat-card-actions>
+                  <button mat-raised-button color="primary" class="btn-block" (click)="OnBuscarPersona()" type="button">Buscar</button>
+                </mat-card-actions>
+              </div>
+              </div>
+              <div class="row">
+                <div class="col text-center">
+                  <ng-container *ngIf="OnValidarPersona();">
+                    <strong>{{personavalores.primernombre+' '+personavalores.segundonombre+' '+personavalores.primerapellido+' '+personavalores.segundoapellido}}</strong>
+                  </ng-container>
+                </div>
+              </div>
+
           </div>
           <div class="col">
             <mat-form-field>
@@ -30,11 +50,35 @@
 
         <div class="row">
           <div class="col">
-            <mat-form-field>
-              <input matInput placeholder="Id Rol" formControlName="id_rol">
-            </mat-form-field>
+            <div class="row">
+              <div class="col">
+                <mat-form-field>
+                  <input matInput placeholder="Id Rol" formControlName="id_rol">
+                </mat-form-field>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <mat-card-actions>
+                  <button mat-raised-button color="primary" class="btn-block" (click)="OnBuscarRol()" type="button">Buscar</button>
+                </mat-card-actions>
+              </div>
+              <div class="col"></div><div class="col"></div><div class="col"></div>
+              </div>
+              <div class="row">
+                <div class="col text-center">
+                  <ng-container *ngIf="OnValidarRol();">
+                    <strong>{{rolvalores.rol}}</strong>
+                  </ng-container>
+                </div>
+                <div class="col"></div><div class="col"></div><div class="col"></div>
+              </div>
+
           </div>
         </div>
+
+
 
       </ng-container>
       <ng-template #elseTemplate1>

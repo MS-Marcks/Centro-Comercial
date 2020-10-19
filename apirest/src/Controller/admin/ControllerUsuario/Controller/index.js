@@ -54,7 +54,7 @@ class ControllerUsuario {
                 }
                 console.log('connected as id ' + connection.threadId);
             });
-            connection.query("CALL sp_search_usuario_single",[req.params.id], function (error, results, fields) {
+            connection.query("CALL sp_search_usuario_single (?)",[req.params.id], function (error, results, fields) {
                 if (error) { res.json(error) };
                 connection.end();
                 res.json(results[0][0])

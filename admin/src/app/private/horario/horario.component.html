@@ -7,9 +7,31 @@
       <ng-container *ngIf="!this.eliminar; else elseTemplate1">
         <div class="row">
           <div class="col">
-            <mat-form-field>
-              <input matInput placeholder="uuid" formControlName="uuid">
-            </mat-form-field>
+
+            <div class="row">
+              <div class="col">
+                <mat-form-field>
+                  <input matInput placeholder="Uuid Usuario" formControlName="uuid">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <mat-card-actions>
+                  <button mat-raised-button color="primary" class="btn-block" (click)="OnBuscarUuid()" type="button">Buscar</button>
+                </mat-card-actions>
+              </div>
+              <div class="col"></div>
+              </div>
+              <div class="row">
+                <div class="col text-center">
+                  <ng-container *ngIf="OnValidarUuid();">
+                    <strong>{{uservalores.primernombre+' '+uservalores.segundonombre+'('+uservalores.uuid+')'}}</strong>
+                  </ng-container>
+                </div>
+                <div class="col"></div>
+              </div>
+
           </div>
           <div class="col">
             <mat-form-field>

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Inventario } from 'src/app/models/inventario/inventario';
 import { InventarioService } from './../../service/inventario/inventario.service';
+import { element } from 'protractor';
+import { Tienda } from 'src/app/models/tienda/tienda';
+import { Tipo } from 'src/app/models/tipo/tipo';
 
 @Component({
   selector: 'app-inventario',
@@ -13,7 +16,8 @@ export class InventarioComponent implements OnInit {
   dataSource: Inventario[];
   displayedColumns = ['id_articulo', 'tienda', 'tipo', 'articulo', 'descripcion', 'precio', 'stock', 'imagen'];
   Forms: FormGroup;
-
+  tiendavalores: Tienda;
+  tipovalores: Tipo;
   estado = 0;
   eliminar = false;
   mensaje = 'CREAR';
@@ -23,6 +27,7 @@ export class InventarioComponent implements OnInit {
   meessage;
   formData: FormData = new FormData();
   imagen = '';
+
   data = {
     id_tienda: null,
     id_tipo: null,
@@ -54,29 +59,41 @@ export class InventarioComponent implements OnInit {
     );
   }
   onSubmit(): void {
-    this.meessage = 'CARGANDO...';
+    if (this.Forms.value.id_tienda !== null && this.Forms.value.id_tipo !== null && this.Forms.value.articulo !== null && this.Forms.value.descripcion !== null && this.Forms.value.precio !== null && this.imagen !== '') {
+      if (typeof this.tiendavalores !== 'undefined' && typeof this.tipovalores !== 'undefined') {
+        this.meessage = 'CARGANDO...';
 
-    if (this.estado === 0) {
-      this.data = this.Forms.value;
-      this.data.imagen = this.imagen;
-      this.formData.append('data', JSON.stringify(this.data));
-      this.service.Post(this.formData).subscribe(
-        (res) => {
-          this.formData = new FormData();
-          this.data = {
-            id_tienda: null,
-            id_tipo: null,
-            articulo: null,
-            descripcion: null,
-            precio: null,
-            imagen: null
-          };
-          this.meessage = res;
-          this.Get();
-          this.OnCancelar();
+        if (this.estado === 0) {
+          this.data = this.Forms.value;
+          this.data.imagen = this.imagen;
+          this.formData.append('data', JSON.stringify(this.data));
+          this.service.Post(this.formData).subscribe(
+            (res) => {
+              this.tiendavalores = undefined;
+              this.tipovalores = undefined;
+              this.formData = new FormData();
+              this.data = {
+                id_tienda: null,
+                id_tipo: null,
+                articulo: null,
+                descripcion: null,
+                precio: null,
+                imagen: null
+              };
+              this.meessage = res;
+              this.Get();
+              this.OnCancelar();
+            }
+          );
         }
-      );
+      } else {
+        this.meessage = 'Verificar si la tienda y el Tipo producto existen!';
+      }
+    }else{
+      this.meessage = 'Debe de ingresar todos los valores';
     }
+
+
   }
   uploadFile(e: File): void {
     this.formData.delete('articulo');
@@ -111,6 +128,40 @@ export class InventarioComponent implements OnInit {
       return false;
     } else {
       return true;
+    }
+  }
+
+  OnBuscarTienda(): void {
+
+    this.service.GetTienda(this.Forms.value.id_tienda).subscribe(
+      (res) => {
+        this.tiendavalores = res;
+      }
+    );
+  }
+  OnBuscarTipo(): void {
+
+    this.service.GetTipo(this.Forms.value.id_tipo).subscribe(
+      (res) => {
+        this.tipovalores = res;
+      }
+    );
+  }
+
+  OnValidarTienda(): boolean {
+    console.log(this.tiendavalores);
+    if (typeof this.tiendavalores !== 'undefined') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  OnValidarTipo(): boolean {
+    if (typeof this.tipovalores !== 'undefined') {
+      return true;
+    } else {
+      return false;
     }
   }
 }

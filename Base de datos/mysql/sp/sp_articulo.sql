@@ -17,5 +17,7 @@ END $
 DELIMITER $
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_inventario_single`(in id INTEGER(11))
 BEGIN
-	SELECT id_articulo,id_tienda,id_tipo,tipo,articulo,descripcion,precio,stock,imagen FROM inventario WHERE id_articulo=id;
+	SELECT i.id_articulo,i.id_tienda,t.tienda,i.id_tipo,tp.tipo,i.articulo,i.descripcion,i.precio,i.stock,i.imagen FROM inventario AS i
+	INNER JOIN tienda AS t ON t.id_tienda=i.id_tienda
+	INNER JOIN tipo AS tp ON tp.id_tipo=i.id_tipo WHERE i.id_articulo=id;
 END $

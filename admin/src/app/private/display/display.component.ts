@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Display } from 'src/app/models/display/display';
+import { Tipo } from 'src/app/models/tipo/tipo';
 import { DisplayService } from 'src/app/service/display/display.service';
+import { Ibeacoins } from 'src/app/models/ibeacoins/ibeacoins';
 
 @Component({
   selector: 'app-display',
@@ -13,7 +15,8 @@ export class DisplayComponent implements OnInit {
   dataSource: Display[];
   displayedColumns = ['identifier', 'id_tipo', 'tipo', 'eliminar'];
   Forms: FormGroup;
-
+  tipovalores: Tipo;
+  ibeavalores: Ibeacoins;
   estado = 0;
   eliminar = false;
   mensaje = 'CREAR';
@@ -41,25 +44,39 @@ export class DisplayComponent implements OnInit {
     );
   }
   onSubmit(): void {
-    this.meessage = 'CARGANDO...';
 
-    if (this.estado === 0) {
-      this.service.Post(this.Forms.value).subscribe(
-        (res) => {
-          this.meessage = res;
-          this.Get();
-          this.OnCancelar();
+    if (this.Forms.value.identifier !== null && this.Forms.value.id_tipo !== null) {
+      if (typeof this.tipovalores !== 'undefined' && typeof this.ibeavalores !== 'undefined') {
+        this.meessage = 'CARGANDO...';
+
+        if (this.estado === 0) {
+          this.service.Post(this.Forms.value).subscribe(
+            (res) => {
+              this.tipovalores = undefined;
+              this.ibeavalores = undefined;
+              this.meessage = res;
+              this.Get();
+              this.OnCancelar();
+            }
+          );
         }
-      );
-    } else if (this.estado === 2) {
-      this.service.Delete(this.identifier, this.id_tipo).subscribe(
-        (res) => {
-          this.meessage = res;
-          this.Get();
-          this.OnCancelar();
+
+        if (this.estado === 2) {
+          this.service.Delete(this.identifier, this.id_tipo).subscribe(
+            (res) => {
+              this.meessage = res;
+              this.Get();
+              this.OnCancelar();
+            }
+          );
         }
-      );
+      } else {
+        this.meessage = 'Verificar si el Ibeacoin y Tipo producto  existen!';
+      }
+    } else {
+      this.meessage = 'Debe de ingresar todos los valores';
     }
+
   }
   Onobtener(element): void {
     this.Forms.setValue(element);
@@ -89,6 +106,36 @@ export class DisplayComponent implements OnInit {
       return false;
     } else {
       return true;
+    }
+  }
+  OnBuscarTipo(): void {
+
+    this.service.GetTipo(this.Forms.value.id_tipo).subscribe(
+      (res) => {
+        this.tipovalores = res;
+      }
+    );
+  }
+  OnValidarTipo(): boolean {
+    if (typeof this.tipovalores !== 'undefined') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  OnBuscarIbeacoin(): void {
+
+    this.service.GetIbeacoins(this.Forms.value.identifier).subscribe(
+      (res) => {
+        this.ibeavalores = res;
+      }
+    );
+  }
+  OnValidarIbeacoin(): boolean {
+    if (typeof this.ibeavalores !== 'undefined') {
+      return true;
+    } else {
+      return false;
     }
   }
 }

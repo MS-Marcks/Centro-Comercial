@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Descripcion } from './../../models/descripcion/descripcion';
 import { DescripcionService } from './../../service/descripcion/descripcion.service';
+import { Inventario } from 'src/app/models/inventario/inventario';
 
 @Component({
   selector: 'app-descripcion',
@@ -14,6 +15,7 @@ export class DescripcionComponent implements OnInit {
   displayedColumns = ['id_descripcion', 'articulo', 'descripcion', 'editar', 'eliminar'];
   Forms: FormGroup;
 
+  articulovalores: Inventario;
   estado = 0;
   eliminar = false;
   mensaje = 'CREAR';
@@ -43,24 +45,37 @@ export class DescripcionComponent implements OnInit {
   }
   onSubmit(): void {
     this.meessage = 'CARGANDO...';
+    if (this.Forms.value.id_articulo !== null && this.Forms.value.descripcion !== null) {
+      if (typeof this.articulovalores !== 'undefined') {
+        if (this.estado === 0) {
+          this.service.Post(this.Forms.value).subscribe(
+            (res) => {
+              this.articulovalores = undefined;
+              this.meessage = res;
+              this.Get();
+              this.OnCancelar();
+            }
+          );
+        } else if (this.estado === 1) {
+          this.service.Update(this.Forms.value).subscribe(
+            (res) => {
+              this.articulovalores = undefined;
+              this.meessage = res;
+              this.Get();
+              this.OnCancelar();
+            }
+          );
+        }
+      } else {
+        this.meessage = 'Verificar si el Articulo existe!';
+      }
 
-    if (this.estado === 0) {
-      this.service.Post(this.Forms.value).subscribe(
-        (res) => {
-          this.meessage = res;
-          this.Get();
-          this.OnCancelar();
-        }
-      );
-    } else if (this.estado === 1) {
-      this.service.Update(this.Forms.value).subscribe(
-        (res) => {
-          this.meessage = res;
-          this.Get();
-          this.OnCancelar();
-        }
-      );
-    } else if (this.estado === 2) {
+    } else {
+      this.meessage = 'Debe de ingresar todos los valores';
+    }
+
+
+    if (this.estado === 2) {
       this.service.Delete(this.id).subscribe(
         (res) => {
           this.meessage = res;
@@ -97,6 +112,23 @@ export class DescripcionComponent implements OnInit {
       return false;
     } else {
       return true;
+    }
+  }
+
+  OnBuscarArticulo(): void {
+    console.log(this.Forms.value.id_articulo);
+    this.service.GetArticulo(this.Forms.value.id_articulo).subscribe(
+      (res) => {
+        this.articulovalores = res;
+        console.log(res);
+      }
+    );
+  }
+  OnValidarArticulo(): boolean {
+    if (typeof this.articulovalores !== 'undefined') {
+      return true;
+    } else {
+      return false;
     }
   }
 }
