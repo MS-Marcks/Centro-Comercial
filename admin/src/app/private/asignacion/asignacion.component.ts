@@ -117,7 +117,7 @@ export class AsignacionComponent implements OnInit {
   }
 
   OnValidarTienda(): boolean {
-    console.log(this.tiendavalores);
+    //console.log(this.tiendavalores);
     if (typeof this.tiendavalores !== 'undefined') {
       return true;
     } else {

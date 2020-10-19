@@ -13,6 +13,7 @@ export class AsignacionService {
   private urlbase = 'http://localhost:3000/api/admin/asigaciontienda';
   private urlbasetienda = 'http://localhost:3000/api/admin/tienda';
   private urlbaseuuid = 'http://localhost:3000/api/admin/usuario';
+
   constructor(private Http: HttpClient) { }
 
   Get(): Observable<Asignacion[]> {
