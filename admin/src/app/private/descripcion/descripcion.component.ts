@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Horario } from './../../models/horario/horario';
-import { HorarioService } from './../../service/horario/horario.service';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Descripcion } from './../../models/descripcion/descripcion';
+import { DescripcionService } from './../../service/descripcion/descripcion.service';
 
 @Component({
-  selector: 'app-horario',
-  templateUrl: './horario.component.html',
-  styleUrls: ['./horario.component.css']
+  selector: 'app-descripcion',
+  templateUrl: './descripcion.component.html',
+  styleUrls: ['./descripcion.component.css']
 })
-export class HorarioComponent implements OnInit {
+export class DescripcionComponent implements OnInit {
 
-
-  dataSource: Horario[];
-  displayedColumns = ['id_horario', 'uuid', 'hora_entrada', 'hora_salida', 'usuario', 'editar', 'eliminar'];
+  dataSource: Descripcion[];
+  displayedColumns = ['id_descripcion', 'articulo', 'descripcion', 'editar', 'eliminar'];
   Forms: FormGroup;
 
   estado = 0;
@@ -23,15 +22,14 @@ export class HorarioComponent implements OnInit {
   id = 0;
   meessage;
 
-  constructor(private service: HorarioService, private fb: FormBuilder) { }
+  constructor(private service: DescripcionService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.Forms = this.fb.group({
-      id_horario: null,
-      uuid: [null, Validators.required],
-      hora_entrada: [null, Validators.required],
-      hora_salida:[null, Validators.required],
-      usuario:null
+      id_descripcion: null,
+      id_articulo: [null, Validators.required],
+      descripcion: [null, Validators.required],
+      articulo: null
     });
     this.Get();
   }
@@ -55,7 +53,6 @@ export class HorarioComponent implements OnInit {
         }
       );
     } else if (this.estado === 1) {
-      console.log(this.Forms.value);
       this.service.Update(this.Forms.value).subscribe(
         (res) => {
           this.meessage = res;
@@ -88,12 +85,12 @@ export class HorarioComponent implements OnInit {
     this.eliminar = false;
   }
   OnEliminar(element): void {
-    this.id = element.id_horario;
+    this.id = element.id_descripcion;
     this.mensaje = 'ELIMINAR';
     this.estado = 2;
     this.cancelar = true;
     this.eliminar = true;
-    this.mensajeEliminar = `Deseas Eliminar En verdad el Horario del Usuario: ${element.uuid} Con ID ${element.id_horario}`;
+    this.mensajeEliminar = `Deseas Eliminar En verdad la descripcion del articulo: ${element.articulo} Con ID ${element.id_descripcion}`;
   }
   OnCargar(): boolean {
     if (typeof this.dataSource === 'undefined') {

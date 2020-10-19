@@ -10,8 +10,10 @@ app.use(helmet());
 app.use(bodyparser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+app.get('/files/:img', function(req, res){
+    res.sendFile( `${__dirname.split('\\src')[0]}/files/${req.params.img}` );
+});
 app.use('/api/admin', Routeadmin)
-
 /*app.use('api/usuario',Routeadmin)
 app.use('api/cliente',Routeadmin)
 app.use('api/sistema',Routeadmin)*/

@@ -32,6 +32,9 @@ import { ClienteComponent } from './private/cliente/cliente.component';
 import { UsuarioComponent } from './private/usuario/usuario.component';
 import { HorarioComponent } from './private/horario/horario.component';
 import { InventarioComponent } from './private/inventario/inventario.component';
+import { DescripcionComponent } from './private/descripcion/descripcion.component';
+import { CompraComponent } from './private/compra/compra.component';
+import { AsignacionComponent } from './private/asignacion/asignacion.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +49,10 @@ import { InventarioComponent } from './private/inventario/inventario.component';
     ClienteComponent,
     UsuarioComponent,
     HorarioComponent,
-    InventarioComponent
+    InventarioComponent,
+    DescripcionComponent,
+    CompraComponent,
+    AsignacionComponent
   ],
   imports: [
     BrowserModule,

@@ -8,36 +8,15 @@
         <div class="row">
           <div class="col">
             <mat-form-field>
-              <input matInput type="number" placeholder="Id Tienda" formControlName="id_tienda">
+              <input matInput placeholder="Id Tienda" formControlName="id_tienda">
             </mat-form-field>
           </div>
           <div class="col">
             <mat-form-field>
-              <input matInput type="number" placeholder="Id Tipo" formControlName="id_tipo">
-            </mat-form-field>
-          </div>
-          <div class="col">
-            <mat-form-field>
-              <input matInput  placeholder="Producto" formControlName="articulo">
-            </mat-form-field>
-          </div>
-          <div class="col">
-            <mat-form-field>
-              <input matInput  placeholder="Descripcion" formControlName="descripcion">
+              <input matInput placeholder="Uuid Usurio" formControlName="uuid">
             </mat-form-field>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <mat-form-field>
-              <input matInput type="number" placeholder="Precio" formControlName="precio">
-            </mat-form-field>
-          </div>
-          <div class="col">
-              <input  (change)="uploadFile($event.target.files)" accept=".pdf,image/*,.doc,.docx" placeholder="Image" type="file" formControlName="imagen">
-          </div>
-        </div>
-
       </ng-container>
       <ng-template #elseTemplate1>
         <div class="row text-center">
@@ -88,45 +67,30 @@
   <div class="mat-elevation-z8">
     <table mat-table class="full-width-table"  [dataSource]="dataSource" matSort aria-label="Elements">
 
-      <ng-container matColumnDef="id_articulo">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-        <td mat-cell *matCellDef="let row">{{row.id_articulo}}</td>
+      <ng-container matColumnDef="id_tienda">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id Tienda</th>
+        <td mat-cell *matCellDef="let row">{{row.id_tienda}}</td>
       </ng-container>
-
       <ng-container matColumnDef="tienda">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Tienda</th>
         <td mat-cell *matCellDef="let row">{{row.tienda}}</td>
       </ng-container>
 
-      <ng-container matColumnDef="tipo">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo del Producto</th>
-        <td mat-cell *matCellDef="let row">{{row.tipo}}</td>
+      <ng-container matColumnDef="uuid">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Uuid Usuario</th>
+        <td mat-cell *matCellDef="let row">{{row.uuid}}</td>
+      </ng-container>
+      <ng-container matColumnDef="usuario">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Usuario</th>
+        <td mat-cell *matCellDef="let row">{{row.usuario}}</td>
       </ng-container>
 
-      <ng-container matColumnDef="articulo">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Producto</th>
-        <td mat-cell *matCellDef="let row">{{row.articulo}}</td>
+  
+      <ng-container matColumnDef="eliminar">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Eliminar</th>
+        <td mat-cell *matCellDef="let row"><button mat-raised-button color="primary"  (click)="OnEliminar(row)" type="submit">ELIMINAR</button></td>
       </ng-container>
 
-      <ng-container matColumnDef="descripcion">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripcion</th>
-        <td mat-cell *matCellDef="let row">{{row.descripcion}}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="precio">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Precio</th>
-        <td mat-cell *matCellDef="let row">{{row.precio}}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="stock">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Stock</th>
-        <td mat-cell *matCellDef="let row">{{row.stock}}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="imagen">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Imagen</th>
-        <td style="width: 10%;" mat-cell *matCellDef="let row"><img style="width: 100%;" src="{{row.imagen}}"/></td>
-      </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

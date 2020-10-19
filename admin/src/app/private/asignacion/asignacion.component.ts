@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Horario } from './../../models/horario/horario';
-import { HorarioService } from './../../service/horario/horario.service';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Asignacion } from 'src/app/models/asignacion/asignacion';
+import { AsignacionService } from './../../service/asignacion/asignacion.service';
 
 @Component({
-  selector: 'app-horario',
-  templateUrl: './horario.component.html',
-  styleUrls: ['./horario.component.css']
+  selector: 'app-asignacion',
+  templateUrl: './asignacion.component.html',
+  styleUrls: ['./asignacion.component.css']
 })
-export class HorarioComponent implements OnInit {
+export class AsignacionComponent implements OnInit {
 
-
-  dataSource: Horario[];
-  displayedColumns = ['id_horario', 'uuid', 'hora_entrada', 'hora_salida', 'usuario', 'editar', 'eliminar'];
+  dataSource: Asignacion[];
+  displayedColumns = ['id_tienda', 'tienda', 'uuid', 'usuario', 'eliminar'];
   Forms: FormGroup;
 
   estado = 0;
@@ -20,18 +19,16 @@ export class HorarioComponent implements OnInit {
   mensaje = 'CREAR';
   cancelar = false;
   mensajeEliminar;
-  id = 0;
+  id_tienda = 0;
+  uuid = '';
   meessage;
 
-  constructor(private service: HorarioService, private fb: FormBuilder) { }
+  constructor(private service: AsignacionService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.Forms = this.fb.group({
-      id_horario: null,
-      uuid: [null, Validators.required],
-      hora_entrada: [null, Validators.required],
-      hora_salida:[null, Validators.required],
-      usuario:null
+      id_tienda: [null, Validators.required],
+      uuid: [null, Validators.required]
     });
     this.Get();
   }
@@ -54,17 +51,8 @@ export class HorarioComponent implements OnInit {
           this.OnCancelar();
         }
       );
-    } else if (this.estado === 1) {
-      console.log(this.Forms.value);
-      this.service.Update(this.Forms.value).subscribe(
-        (res) => {
-          this.meessage = res;
-          this.Get();
-          this.OnCancelar();
-        }
-      );
     } else if (this.estado === 2) {
-      this.service.Delete(this.id).subscribe(
+      this.service.Delete(this.id_tienda, this.uuid).subscribe(
         (res) => {
           this.meessage = res;
           this.Get();
@@ -88,12 +76,13 @@ export class HorarioComponent implements OnInit {
     this.eliminar = false;
   }
   OnEliminar(element): void {
-    this.id = element.id_horario;
+    this.id_tienda = element.id_tienda;
+    this.uuid = element.uuid;
     this.mensaje = 'ELIMINAR';
     this.estado = 2;
     this.cancelar = true;
     this.eliminar = true;
-    this.mensajeEliminar = `Deseas Eliminar En verdad el Horario del Usuario: ${element.uuid} Con ID ${element.id_horario}`;
+    this.mensajeEliminar = `Deseas Eliminar En verdad La Asignacion del usuario: ${element.usuario} Con ID ${element.uuid}`;
   }
   OnCargar(): boolean {
     if (typeof this.dataSource === 'undefined') {

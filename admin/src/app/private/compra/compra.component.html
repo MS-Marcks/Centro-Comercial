@@ -8,36 +8,25 @@
         <div class="row">
           <div class="col">
             <mat-form-field>
-              <input matInput type="number" placeholder="Id Tienda" formControlName="id_tienda">
+              <input matInput placeholder="Id Proveedor" formControlName="id_proveedor">
             </mat-form-field>
           </div>
           <div class="col">
             <mat-form-field>
-              <input matInput type="number" placeholder="Id Tipo" formControlName="id_tipo">
+              <input matInput placeholder="Id Articulo" formControlName="id_articulo">
             </mat-form-field>
           </div>
           <div class="col">
             <mat-form-field>
-              <input matInput  placeholder="Producto" formControlName="articulo">
+              <input matInput placeholder="Cantidad" formControlName="cantidad">
             </mat-form-field>
           </div>
           <div class="col">
             <mat-form-field>
-              <input matInput  placeholder="Descripcion" formControlName="descripcion">
+              <input matInput placeholder="Precio" formControlName="precio">
             </mat-form-field>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <mat-form-field>
-              <input matInput type="number" placeholder="Precio" formControlName="precio">
-            </mat-form-field>
-          </div>
-          <div class="col">
-              <input  (change)="uploadFile($event.target.files)" accept=".pdf,image/*,.doc,.docx" placeholder="Image" type="file" formControlName="imagen">
-          </div>
-        </div>
-
       </ng-container>
       <ng-template #elseTemplate1>
         <div class="row text-center">
@@ -88,29 +77,24 @@
   <div class="mat-elevation-z8">
     <table mat-table class="full-width-table"  [dataSource]="dataSource" matSort aria-label="Elements">
 
-      <ng-container matColumnDef="id_articulo">
+      <ng-container matColumnDef="id_compra">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-        <td mat-cell *matCellDef="let row">{{row.id_articulo}}</td>
+        <td mat-cell *matCellDef="let row">{{row.id_compra}}</td>
       </ng-container>
 
-      <ng-container matColumnDef="tienda">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Tienda</th>
-        <td mat-cell *matCellDef="let row">{{row.tienda}}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="tipo">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo del Producto</th>
-        <td mat-cell *matCellDef="let row">{{row.tipo}}</td>
+      <ng-container matColumnDef="proveedor">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Proveedor</th>
+        <td mat-cell *matCellDef="let row">{{row.proveedor}}</td>
       </ng-container>
 
       <ng-container matColumnDef="articulo">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Producto</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Articulo</th>
         <td mat-cell *matCellDef="let row">{{row.articulo}}</td>
       </ng-container>
 
-      <ng-container matColumnDef="descripcion">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripcion</th>
-        <td mat-cell *matCellDef="let row">{{row.descripcion}}</td>
+      <ng-container matColumnDef="cantidad">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Cantidad</th>
+        <td mat-cell *matCellDef="let row">{{row.cantidad}}</td>
       </ng-container>
 
       <ng-container matColumnDef="precio">
@@ -118,14 +102,9 @@
         <td mat-cell *matCellDef="let row">{{row.precio}}</td>
       </ng-container>
 
-      <ng-container matColumnDef="stock">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Stock</th>
-        <td mat-cell *matCellDef="let row">{{row.stock}}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="imagen">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Imagen</th>
-        <td style="width: 10%;" mat-cell *matCellDef="let row"><img style="width: 100%;" src="{{row.imagen}}"/></td>
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Total</th>
+        <td mat-cell *matCellDef="let row">{{row.total}}</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -4,10 +4,13 @@ import multer from 'multer';
 import mimeType from 'mime-types'
 const router = Router();
 
+//const upload = (req,res,next)=>{}
 const storage = multer.diskStorage({
     destination:'files/',
     filename: function(req,file,cb){
-        cb("",Date.now()+file.originalname+"."+mimeType.extension(file.mimetype))
+        const fil = Date.now()+file.originalname+"."+mimeType.extension(file.mimetype);
+        console.log(req.body);
+        cb("",fil)
     }
 })
 const upload = multer({

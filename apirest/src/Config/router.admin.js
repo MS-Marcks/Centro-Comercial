@@ -11,6 +11,8 @@ import ControllerUsuario from '../Controller/admin/ControllerUsuario/route'
 import ControllerHorario from '../Controller/admin/ControllerHorario/route'
 import ControllerDescripcion from '../Controller/admin/ControllerDescripcion/route'
 import ControllerInventario from '../Controller/admin/ControllerInventario/route'
+import ControllerCompras from '../Controller/admin/ControllerCompras/route'
+import ControllerAsigacionTienda from '../Controller/admin/ControllerAsigacionTienda/route'
 var route = Router();
 
 route.use('/tipoproducto', ControllerTipo)
@@ -25,5 +27,7 @@ route.use('/usuario', ControllerUsuario)
 route.use('/horario', ControllerHorario)
 route.use('/descripcion', ControllerDescripcion)
 route.use('/inventario', ControllerInventario)
+route.use('/compras', ControllerCompras)
+route.use('/asigaciontienda', ControllerAsigacionTienda)
 
 export default route;

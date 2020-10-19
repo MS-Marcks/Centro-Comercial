@@ -15,7 +15,7 @@ END $
 DELIMITER $
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_horario`(in pid_horario INTEGER(11),in phora_entrada VARCHAR(20),in phora_salida VARCHAR(20))
 BEGIN
-	UPDATE horario SET hora_entrada=hora_entrada,hora_salida=hora_salida WHERE id_horario= pid_horario;
+	UPDATE horario SET hora_entrada=phora_entrada,hora_salida=phora_salida WHERE id_horario= pid_horario;
 END $
 
 DELIMITER $

@@ -41,7 +41,6 @@ class ControllerHorario {
             res.json(error);
         }
     }
-    
     static Update(req, res) {
         try {
             var body = req.body;

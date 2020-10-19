@@ -7,12 +7,12 @@ END $
 DELIMITER $
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_asigancion_tienda`()
 BEGIN
-	SELECT ast.*,u.usuario,t.tienda FROM asigancion_tienda AS ast INNER JOIN tienda AS t ON ast.id_tienda=t.id_tienda
+	SELECT ast.id_tienda,ast.uuid,u.usuario,t.tienda FROM asigancion_tienda AS ast INNER JOIN tienda AS t ON ast.id_tienda=t.id_tienda
     INNER JOIN usuario AS u ON ast.uuid=u.uuid;
 END $
 
 DELIMITER $
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_asigancion_tienda`(in id INTEGER(11), in id1 VARCHAR(11))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_asigancion_tienda`(in id INTEGER(11), in id1 VARCHAR(32))
 BEGIN
-	DELETE FROM asigancion_tienda WHERE id_tienda=id AND puuid=id1;
+	DELETE FROM asigancion_tienda WHERE id_tienda=id AND uuid=id1;
 END $

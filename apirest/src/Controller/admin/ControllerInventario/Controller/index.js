@@ -5,7 +5,8 @@ const server = 'http://localhost:3000/files/'
 class ControllerInventario {
     static Create(req, res) {
         try {
-            var body = req.body;
+            var body = JSON.parse(req.body.data);
+            body.imagen = server + req.file.filename;
             var connection = mysql.createConnection(Connect);
             connection.connect((err) => {
                 if (err) {
@@ -14,7 +15,7 @@ class ControllerInventario {
                 }
                 console.log('connected as id ' + connection.threadId);
             });
-            connection.query(`CALL sp_create_inventario(?,?,?,?,?,?,?)`, [body.id_tienda,body.id_tipo,body.articulo,body.descripcion,body.precio,body.stock,body.imagen], function (error, results, fields) {
+            connection.query(`CALL sp_create_inventario(?,?,?,?,?,?)`, [body.id_tienda, body.id_tipo, body.articulo, body.descripcion, body.precio, body.imagen], function (error, results, fields) {
                 if (error) { res.json(error) };
                 connection.end();
                 res.json("CREATED SUCCESFULY")

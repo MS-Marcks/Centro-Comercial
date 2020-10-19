@@ -13,7 +13,7 @@ class ControllerDescripcion {
                 }
                 console.log('connected as id ' + connection.threadId);
             });
-            connection.query(`CALL sp_create_descripcion(?,?)`, [body.id_articulo,body.descripcion], function (error, results, fields) {
+            connection.query(`CALL sp_create_descripcion(?,?)`, [body.id_articulo, body.descripcion], function (error, results, fields) {
                 if (error) { res.json(error) };
                 connection.end();
                 res.json("CREATED SUCCESFULY")
@@ -54,7 +54,7 @@ class ControllerDescripcion {
                 }
                 console.log('connected as id ' + connection.threadId);
             });
-            connection.query("CALL sp_update_descripcion (?,?,?) ", [body.id_descripcion,body.id_articulo,body.descripcion], function (error, results, fields) {
+            connection.query("CALL sp_update_descripcion (?,?,?) ", [body.id_descripcion, body.id_articulo, body.descripcion], function (error, results, fields) {
                 if (error) { res.json(error) };
                 connection.end();
                 res.json("UPDATED SUCCESFULY")
@@ -75,7 +75,7 @@ class ControllerDescripcion {
                 }
                 console.log('connected as id ' + connection.threadId);
             });
-            connection.query("CALL sp_delete_tipo (?) ", [id], function (error, results, fields) {
+            connection.query("CALL sp_delete_descripcion (?) ", [id], function (error, results, fields) {
                 if (error) { res.json(error) };
                 connection.end();
                 res.json("DELETE SUCCESFULY");
@@ -83,7 +83,6 @@ class ControllerDescripcion {
         } catch (error) {
             res.json(error);
         }
-
     }
 }
 export default ControllerDescripcion;
