@@ -11,6 +11,12 @@ BEGIN
 END $
 
 DELIMITER $
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_proveedor_single`(in id INTEGER(11))
+BEGIN
+	SELECT id_proveedor,razonsocial AS proveedor FROM proveedor WHERE id_proveedor=id;
+END $
+
+DELIMITER $
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_proveedor`(in pid_proveedor INTEGER(11),in pproveedor VARCHAR(128))
 BEGIN
 	UPDATE proveedor SET razonsocial = pproveedor WHERE id_proveedor= pid_proveedor;
