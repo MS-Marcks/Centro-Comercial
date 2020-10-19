@@ -10,6 +10,7 @@ BEGIN
 	SELECT id_persona,primernombre,segundonombre,primerapellido,segundoapellido,direccion,nit,telefono FROM persona;
 END $
 
+
 DELIMITER $
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_persona_single`(in id INTEGER(11))
 BEGIN
