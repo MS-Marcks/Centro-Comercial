@@ -19,5 +19,6 @@ const upload = multer({
 
 router.post("/",upload.single('articulo'), Controller.Create)
 router.get("/", Controller.Search)
+router.get("/:id", Controller.SearchSingle)
 
 export default router;

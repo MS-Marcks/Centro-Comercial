@@ -11,3 +11,11 @@ BEGIN
 	INNER JOIN tienda AS t ON t.id_tienda=i.id_tienda
 	INNER JOIN tipo AS tp ON tp.id_tipo=i.id_tipo;
 END $
+
+
+
+DELIMITER $
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_inventario_single`(in id INTEGER(11))
+BEGIN
+	SELECT id_articulo,id_tienda,id_tipo,tipo,articulo,descripcion,precio,stock,imagen FROM inventario WHERE id_articulo=id;
+END $
