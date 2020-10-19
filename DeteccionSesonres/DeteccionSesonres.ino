@@ -1,5 +1,9 @@
 #include <ESP8266WiFi.h>
 #include <FirebaseArduino.h>
+
+#include <SPI.h>    
+#include <MFRC522.h>
+
 #include <DHT.h>
 
 #define FIREBASE_HOST "centro-comercial-617c3.firebaseio.com"
@@ -31,6 +35,11 @@ long OffTimesensor2 = 350;
 bool Statesensor2 = true;
 boolean valsensor2;
 unsigned long previousMillissensor2;
+
+#define RST_PIN  9     
+#define SS_PIN  10     
+
+MFRC522 mfrc522(SS_PIN, RST_PIN); 
 
 void setup() {
   Serial.begin(115200);

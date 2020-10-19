@@ -11,9 +11,15 @@
 #define servopuertaPin 8
 #define servoestacionPin 9
 
-#define trigEstacionPin 13
-#define echoEstacionPin 12
+//=============================================================
+// PROXIMETRO 1
+//==============================================================
+#define trigEstacionPin 13 //AMARRILLO
+#define echoEstacionPin 12 // MORADO
 
+//=============================================================
+// PROXIMETRO 2
+//==============================================================
 #define trigPuertaPin 4
 #define echoPuertaPin 3
 
@@ -58,8 +64,8 @@ void setup() {
   pinMode(trigPuertaPin, OUTPUT);
   pinMode(echoEstacionPin, INPUT);
 
-  servoMotorEstacion.write(90);
-  servoMotorPuerta.write(90);
+  servoMotorEstacion.write(0);
+  servoMotorPuerta.write(0);
 }
 
 void loop() {
@@ -75,8 +81,9 @@ void fun_ProximetroEstacionamiento(struct pt *pt) {
   do {
     t = millis(); PT_WAIT_WHILE(pt, (millis() - t) < 50);
     long distanciaE = sonarEstacionamiento.ping_cm();
-    if ( distanciaE < 15 && distanciaE != 0) {
+    if ( distanciaE < 10 && distanciaE != 0) {
       HabilitarEstacion = true;
+      Serial.print("hola");
     } else {
       HabilitarEstacion = false;
     }
@@ -90,8 +97,9 @@ void fun_ProximetroPuerta(struct pt *pt) {
   do {
     t = millis(); PT_WAIT_WHILE(pt, (millis() - t) < 50);
     long distanciaP = sonarPuerta.ping_cm();
-    if ( distanciaP < 15 && distanciaP != 0) {
+    if ( distanciaP < 10 && distanciaP != 0) {
       HabilitarPuerta = true;
+      Serial.print("adios");
     } else {
       HabilitarPuerta = false;
     }
@@ -104,14 +112,14 @@ void fun_ServoEstacionamiento(struct pt *pt) {
   static long t = 0;
   do {
     if (HabilitarEstacion == true && habilitoEstacion == false) {
-      for (iE = 90; iE >= 0 ; iE -= 15) {
+      for (iE = 0; iE <= 90 ; iE += 15) {
         servoMotorEstacion.write(iE);
         t = millis(); PT_WAIT_WHILE(pt, (millis() - t) < 100);
       }
       habilitoEstacion = true;
     } else if (HabilitarEstacion == false && habilitoEstacion == true) {
       t = millis(); PT_WAIT_WHILE(pt, (millis() - t) < 5000);
-      for (kE = 0; kE <= 90 ; kE += 15) {
+      for (kE = 90; kE >= 0 ; kE -= 15) {
         servoMotorEstacion.write(kE);
         t = millis(); PT_WAIT_WHILE(pt, (millis() - t) < 100);
       }
