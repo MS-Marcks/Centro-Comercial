@@ -19,7 +19,7 @@ BEGIN
 END $
 
 DELIMITER $
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_horario`(in id INTEGER(11))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_horario`(in id INTEGER(128))
 BEGIN
 	DELETE FROM horario WHERE id_horario=id;
 END $

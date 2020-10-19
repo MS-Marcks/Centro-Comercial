@@ -30,6 +30,8 @@ import { DisplayComponent } from './private/display/display.component';
 import { PersonaComponent } from './private/persona/persona.component';
 import { ClienteComponent } from './private/cliente/cliente.component';
 import { UsuarioComponent } from './private/usuario/usuario.component';
+import { HorarioComponent } from './private/horario/horario.component';
+import { InventarioComponent } from './private/inventario/inventario.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,9 @@ import { UsuarioComponent } from './private/usuario/usuario.component';
     DisplayComponent,
     PersonaComponent,
     ClienteComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    HorarioComponent,
+    InventarioComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import { DisplayComponent } from './private/display/display.component';
 import { PersonaComponent } from './private/persona/persona.component';
 import { ClienteComponent } from './private/cliente/cliente.component';
 import { UsuarioComponent } from './private/usuario/usuario.component';
+import { HorarioComponent } from './private/horario/horario.component';
 
 const routes: Routes = [
   { path: 'tipoproducto', component: TipoComponent },
@@ -19,11 +20,13 @@ const routes: Routes = [
   { path: 'display', component: DisplayComponent },
   { path: 'persona', component: PersonaComponent },
   { path: 'cliente', component: ClienteComponent },
-  { path: 'usuario', component: UsuarioComponent }
+  { path: 'usuario', component: UsuarioComponent },
+  { path: 'horario', component: HorarioComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+
+exports: [RouterModule]
 })
 export class AppRoutingModule { }

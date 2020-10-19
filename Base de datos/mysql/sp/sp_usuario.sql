@@ -7,5 +7,5 @@ END $
 DELIMITER $
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_usuario`()
 BEGIN
-	SELECT r.rol,u.uuid,p.id_persona,p.primernombre,p.segundonombre,p.primerapellido,p.segundoapellido,p.direccion,p.nit,p.telefono,u.usuario FROM persona AS p INNER JOIN usuario AS u ON p.id_persona =u.id_persona INNER JOIN rol AS r.id_rol=u.id_rol;
+	SELECT r.rol,u.uuid,p.id_persona,p.primernombre,p.segundonombre,p.primerapellido,p.segundoapellido,p.direccion,p.nit,p.telefono,u.usuario FROM persona AS p INNER JOIN usuario AS u ON p.id_persona =u.id_persona INNER JOIN rol AS r ON r.id_rol=u.id_rol;
 END $
