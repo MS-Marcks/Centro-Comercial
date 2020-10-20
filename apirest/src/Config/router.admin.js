@@ -13,6 +13,7 @@ import ControllerDescripcion from '../Controller/admin/ControllerDescripcion/rou
 import ControllerInventario from '../Controller/admin/ControllerInventario/route'
 import ControllerCompras from '../Controller/admin/ControllerCompras/route'
 import ControllerAsigacionTienda from '../Controller/admin/ControllerAsigacionTienda/route'
+import ControllerLogin from '../Controller/admin/ControllerLogin/route'
 var route = Router();
 
 route.use('/tipoproducto', ControllerTipo)
@@ -29,5 +30,6 @@ route.use('/descripcion', ControllerDescripcion)
 route.use('/inventario', ControllerInventario)
 route.use('/compras', ControllerCompras)
 route.use('/asigaciontienda', ControllerAsigacionTienda)
+route.use('/session', ControllerLogin)
 
 export default route;

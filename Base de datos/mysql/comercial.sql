@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 19-10-2020 a las 23:03:47
--- Versión del servidor: 5.7.26
+-- Tiempo de generación: 20-10-2020 a las 03:54:05
+-- Versión del servidor: 5.7.24
 -- Versión de PHP: 5.6.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -264,6 +264,11 @@ END$$
 DROP PROCEDURE IF EXISTS `sp_search_usuario_single`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_usuario_single` (IN `id` VARCHAR(32))  BEGIN
 	SELECT r.rol,u.uuid,p.id_persona,p.primernombre,p.segundonombre,p.primerapellido,p.segundoapellido,p.direccion,p.nit,p.telefono,u.usuario FROM persona AS p INNER JOIN usuario AS u ON p.id_persona =u.id_persona INNER JOIN rol AS r ON r.id_rol=u.id_rol WHERE u.uuid=id; 
+END$$
+
+DROP PROCEDURE IF EXISTS `sp_session`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_session` (IN `pusuario` VARCHAR(128), IN `pid_rol` INT(11))  BEGIN
+	SELECT * FROM usuario WHERE usuario=pusuario AND id_rol = pid_rol;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_update_descripcion`$$

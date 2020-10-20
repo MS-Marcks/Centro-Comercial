@@ -21,7 +21,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TiendaComponent } from './private/tienda/tienda.component';
 import { ProveedorComponent } from './private/proveedor/proveedor.component';
 import { RolComponent } from './private/rol/rol.component';
@@ -35,6 +35,9 @@ import { InventarioComponent } from './private/inventario/inventario.component';
 import { DescripcionComponent } from './private/descripcion/descripcion.component';
 import { CompraComponent } from './private/compra/compra.component';
 import { AsignacionComponent } from './private/asignacion/asignacion.component';
+import { LoginComponent } from './public/login/login.component';
+import { AuthGuard } from './auth.guard';
+import { InterceptorService } from './service/interceptor/interceptor.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +55,8 @@ import { AsignacionComponent } from './private/asignacion/asignacion.component';
     InventarioComponent,
     DescripcionComponent,
     CompraComponent,
-    AsignacionComponent
+    AsignacionComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +79,11 @@ import { AsignacionComponent } from './private/asignacion/asignacion.component';
     MatProgressSpinnerModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuard, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: InterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

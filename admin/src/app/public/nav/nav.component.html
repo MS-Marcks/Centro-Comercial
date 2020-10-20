@@ -5,20 +5,23 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink='tipoproducto'>Tipo Producto</a>
-      <a mat-list-item routerLink="tienda">Tiendas</a>
-      <a mat-list-item routerLink="inventario">Inventario</a>
-      <a mat-list-item routerLink="descripcion">Descripcion</a>
-      <a mat-list-item routerLink="compra">Compras</a>
-      <a mat-list-item routerLink="proveedor">Proveedor</a>
-      <a mat-list-item routerLink="rol">Roles</a>
-      <a mat-list-item routerLink="ibeacoins">Ibeacoins</a>
-      <a mat-list-item routerLink="display">Asigacion Ibeacoins a Tipo Producto</a>
-      <a mat-list-item routerLink="persona">Persona</a>
-      <a mat-list-item routerLink="cliente">Cliente</a>
-      <a mat-list-item routerLink="usuario">Usuario</a>
-      <a mat-list-item routerLink="asignacion">Asigancion de Usuario a Tienda</a>
-      <a mat-list-item routerLink="horario">Horario</a>
+      <ng-container *ngIf="GetToken();">
+        <a mat-list-item routerLink='tipoproducto'>Tipo Producto</a>
+        <a mat-list-item routerLink="tienda">Tiendas</a>
+        <a mat-list-item routerLink="inventario">Inventario</a>
+        <a mat-list-item routerLink="descripcion">Descripcion</a>
+        <a mat-list-item routerLink="compra">Compras</a>
+        <a mat-list-item routerLink="proveedor">Proveedor</a>
+        <a mat-list-item routerLink="rol">Roles</a>
+        <a mat-list-item routerLink="ibeacoins">Ibeacoins</a>
+        <a mat-list-item routerLink="display">Asigacion Ibeacoins a Tipo Producto</a>
+        <a mat-list-item routerLink="persona">Persona</a>
+        <a mat-list-item routerLink="cliente">Cliente</a>
+        <a mat-list-item routerLink="usuario">Usuario</a>
+        <a mat-list-item routerLink="asignacion">Asigancion de Usuario a Tienda</a>
+        <a mat-list-item routerLink="horario">Horario</a>
+      </ng-container>
+
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
