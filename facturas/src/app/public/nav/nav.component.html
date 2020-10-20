@@ -3,12 +3,11 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar class="bg-warning text-light">Menu</mat-toolbar>
     <mat-nav-list>
       <ng-container *ngIf="GetToken();">
-        <a mat-list-item routerLink="cliente">Cliente</a>
-        <a mat-list-item routerLink="factura">Factura</a>
-        <a mat-list-item href="#">Link 3</a>
+        <a mat-list-item routerLink="cliente"><i class="fa fa-user"></i> Cliente</a>
+        <a mat-list-item routerLink="factura"><i class="fa fa-file-text"></i> Factura</a>
       </ng-container>
     </mat-nav-list>
   </mat-sidenav>
