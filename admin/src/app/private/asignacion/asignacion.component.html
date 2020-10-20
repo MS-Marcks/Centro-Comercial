@@ -1,7 +1,7 @@
 <form [formGroup]="Forms" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="shipping-card">
     <mat-card-header>
-      <mat-card-title>Asignacion Tienda a Usuario</mat-card-title>
+      <mat-card-title class="text-warning" >Asignacion Tienda a Usuario <i class="fa fa-user-plus"></i></mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <ng-container *ngIf="!this.eliminar; else elseTemplate1">
