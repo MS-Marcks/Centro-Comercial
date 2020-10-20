@@ -21,7 +21,6 @@
         <a mat-list-item routerLink="asignacion"><i class="fa fa-user-plus"></i> Asigancion de Usuario a Tienda</a>
         <a mat-list-item routerLink="horario"><i class="fa fa-calendar-check-o"></i> Horario</a>
       </ng-container>
-
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -35,6 +34,13 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>admin</span>
+      <ng-container *ngIf="GetToken();">
+        <div class="ml-auto">
+          <mat-card-actions>
+            <button mat-raised-button (click)="Logout()" class="btn-warning btn-block" type="submit">CERRAR SESION</button>
+          </mat-card-actions>
+        </div>
+      </ng-container>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

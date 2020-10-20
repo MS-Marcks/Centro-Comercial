@@ -11,3 +11,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_cliente`()
 BEGIN
 	SELECT p.id_persona,p.primernombre,p.segundonombre,p.primerapellido,p.segundoapellido,p.direccion,p.nit,p.telefono,c.usuario FROM persona AS p INNER JOIN cliente AS c ON p.id_persona =c.id_cliente;
 END $
+
+
+DELIMITER $
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_cliente_single`(in pid_cliente VARCHAR(32))
+BEGIN
+	SELECT p.id_persona,p.primernombre,p.segundonombre,p.primerapellido,p.segundoapellido,p.direccion,p.nit,p.telefono,c.usuario FROM persona AS p INNER JOIN cliente AS c ON p.id_persona =c.id_cliente WHERE p.nit=pid_cliente;
+END $

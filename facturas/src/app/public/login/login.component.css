@@ -1,8 +1,11 @@
 .full-width {
   width: 100%;
 }
-
+.minh-100{
+  height: 100vh;
+}
 .shipping-card {
+  width: 50%;
   min-width: 120px;
   margin: 20px auto;
 }
@@ -24,4 +27,7 @@
 
 .col:last-child {
   margin-right: 0;
+}
+.icons-title{
+  width: 40%;
 }

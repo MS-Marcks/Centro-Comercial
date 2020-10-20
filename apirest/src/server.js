@@ -9,11 +9,20 @@ import auth from './Tools/Middleware/auth';
 
 const AUTHOptions = {
     UrlStart: "/session",
-    ActiveTime: "15m",
+    ActiveTime: "5h",
     KEY_TOKEN: process.env.KEY_TOKEN_ADMIN,
     NameToken: "access-token",
     EncryptionMethod: "HS256"
 }
+
+const UserAUTHOptions = {
+    UrlStart: "/session",
+    ActiveTime: "5h",
+    KEY_TOKEN: process.env.KEY_TOKEN_USER,
+    NameToken: "access-token-user",
+    EncryptionMethod: "HS256"
+}
+
 
 const app = express();
 
@@ -27,7 +36,7 @@ app.get('/files/:img', function (req, res) {
     res.sendFile(`${__dirname.split('\\src')[0]}/files/${req.params.img}`);
 });
 app.use('/api/admin',auth(AUTHOptions), Routeadmin)
-app.use('/api/usuario', RouteUsuario)
+app.use('/api/usuario',auth(UserAUTHOptions), RouteUsuario)
 /*app.use('api/cliente',Routeadmin)
 app.use('api/sistema',Routeadmin)*/
 const server = app.listen(process.env.PORT || 3000, () => {

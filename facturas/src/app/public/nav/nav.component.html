@@ -5,9 +5,11 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+      <ng-container *ngIf="GetToken();">
+        <a mat-list-item routerLink="cliente">Cliente</a>
+        <a mat-list-item routerLink="factura">Factura</a>
+        <a mat-list-item href="#">Link 3</a>
+      </ng-container>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -21,7 +23,15 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>facturas</span>
+      <ng-container *ngIf="GetToken();">
+        <div class="ml-auto">
+          <mat-card-actions>
+            <button mat-raised-button (click)="Logout()" class="btn-warning btn-block" type="submit">CERRAR SESION</button>
+          </mat-card-actions>
+        </div>
+      </ng-container>
+
     </mat-toolbar>
-    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

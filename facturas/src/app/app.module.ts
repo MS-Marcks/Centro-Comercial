@@ -22,6 +22,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { ClienteComponent } from './private/cliente/cliente.component';
+import { AuthGuard } from './auth.guard';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { InterceptorService } from './service/interceptor/interceptor.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { DetalleComponent } from './private/detalle/detalle.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,8 @@ import { ClienteComponent } from './private/cliente/cliente.component';
     LoginComponent,
     NavComponent,
     FacturaComponent,
-    ClienteComponent
+    ClienteComponent,
+    DetalleComponent
   ],
   imports: [
     BrowserModule,
@@ -48,9 +54,15 @@ import { ClienteComponent } from './private/cliente/cliente.component';
     MatListModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [AuthGuard, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: InterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

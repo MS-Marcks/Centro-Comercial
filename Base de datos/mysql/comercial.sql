@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 20-10-2020 a las 03:54:05
+-- Tiempo de generación: 20-10-2020 a las 18:54:50
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 5.6.40
 
@@ -26,6 +26,11 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+DROP PROCEDURE IF EXISTS `sp_change_status_factura`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_change_status_factura` (IN `id` INTEGER(11), IN `pestado` VARCHAR(32))  BEGIN
+	UPDATE factura set estado=pestado WHERE id_factura=id;
+END$$
+
 DROP PROCEDURE IF EXISTS `sp_create_asigancion_tienda`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_create_asigancion_tienda` (IN `pid_tipo` INTEGER(11), IN `puuid` VARCHAR(32))  BEGIN
 	INSERT INTO asigancion_tienda (id_tienda,uuid) VALUES (pid_tipo,puuid);
@@ -51,9 +56,22 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_create_descripcion` (IN `pid_art
 	INSERT INTO descripcion (id_articulo,descripcion) VALUES (pid_articulo,pdescripcion);
 END$$
 
+DROP PROCEDURE IF EXISTS `sp_create_detalle`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_create_detalle` (IN `pid_factura` INTEGER(11), IN `pid_articulo` INTEGER(11), IN `pprecio` FLOAT(10,2), `pcantidad` INTEGER(11))  BEGIN
+	INSERT INTO detallefactura (id_factura,id_articulo,precio,cantidad) VALUES (pid_factura,pid_articulo,pprecio,pcantidad);
+	SET @pstock= (SELECT stock FROM inventario WHERE id_articulo = pid_articulo);
+	SET @pstock = @pstock-pcantidad;
+	UPDATE inventario SET stock=@pstock WHERE id_articulo = pid_articulo;
+END$$
+
 DROP PROCEDURE IF EXISTS `sp_create_display`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_create_display` (IN `pidentifier` VARCHAR(128), IN `pid_tipo` INTEGER(11))  BEGIN
 	INSERT INTO display (identifier,id_tipo) VALUES (pidentifier,pid_tipo);
+END$$
+
+DROP PROCEDURE IF EXISTS `sp_create_factura`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_create_factura` (IN `puuid` VARCHAR(32), IN `pid_cliente` INT(11), IN `pnit` VARCHAR(10), IN `pdireccion` VARCHAR(256))  BEGIN
+	INSERT INTO factura (uuid,id_cliente,nit,direccion,fecha,estado) VALUES (puuid,pid_cliente,pnit,pdireccion,CURDATE(),'CREADA');
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_create_horario`$$
@@ -112,6 +130,15 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_descripcion` (IN `id` INT
 	DELETE FROM descripcion WHERE id_descripcion=id;
 END$$
 
+DROP PROCEDURE IF EXISTS `sp_delete_detalle`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_detalle` (IN `pid_factura` INTEGER(11), IN `pid_articulo` INTEGER(11))  BEGIN
+	SET @pcantidad= (SELECT cantidad FROM detallefactura WHERE id_factura=pid_factura AND id_articulo=pid_articulo);
+	SET @pstock= (SELECT stock FROM inventario WHERE id_articulo = pid_articulo);
+	SET @pstock = @pstock+@pcantidad;
+	UPDATE inventario SET stock=@pstock WHERE id_articulo = pid_articulo;
+	DELETE FROM detallefactura WHERE id_factura=pid_factura AND id_articulo=pid_articulo;
+END$$
+
 DROP PROCEDURE IF EXISTS `sp_delete_display`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_display` (IN `id` VARCHAR(128), IN `id1` INTEGER(11))  BEGIN
 	DELETE FROM display WHERE identifier=id AND id_tipo=id1;
@@ -158,6 +185,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_cliente` ()  BEGIN
 	SELECT p.id_persona,p.primernombre,p.segundonombre,p.primerapellido,p.segundoapellido,p.direccion,p.nit,p.telefono,c.usuario FROM persona AS p INNER JOIN cliente AS c ON p.id_persona =c.id_cliente;
 END$$
 
+DROP PROCEDURE IF EXISTS `sp_search_cliente_single`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_cliente_single` (IN `pid_cliente` VARCHAR(32))  BEGIN
+	SELECT p.id_persona,p.primernombre,p.segundonombre,p.primerapellido,p.segundoapellido,p.direccion,p.nit,p.telefono,c.usuario FROM persona AS p INNER JOIN cliente AS c ON p.id_persona =c.id_cliente WHERE p.nit=pid_cliente;
+END$$
+
 DROP PROCEDURE IF EXISTS `sp_search_compra`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_compra` ()  BEGIN
 	SELECT c.id_compra,c.id_proveedor,p.razonsocial AS proveedor,c.id_articulo,i.articulo,c.cantidad,c.precio,(c.cantidad*c.precio) AS total FROM compras AS c 
@@ -170,10 +202,74 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_descripcion` ()  BEGIN
 	SELECT d.id_descripcion,i.id_articulo,i.articulo,d.descripcion FROM descripcion AS d INNER JOIN inventario AS i ON d.id_articulo=i.id_articulo;
 END$$
 
+DROP PROCEDURE IF EXISTS `sp_search_detalle`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_detalle` (IN `pid_factura` INTEGER(11))  BEGIN
+	SELECT dt.*,i.articulo FROM detallefactura AS dt
+	INNER JOIN factura AS f ON dt.id_factura=f.id_factura
+	INNER JOIN inventario AS i ON dt.id_articulo=i.id_articulo
+	WHERE f.id_factura=pid_factura;
+END$$
+
 DROP PROCEDURE IF EXISTS `sp_search_display`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_display` ()  BEGIN
 	SELECT i.identifier,t.id_tipo,t.tipo FROM display AS d INNER JOIN tipo AS t ON d.id_tipo=t.id_tipo
     INNER JOIN ibeacoins AS i ON d.identifier=i.identifier;
+END$$
+
+DROP PROCEDURE IF EXISTS `sp_search_factura`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_factura` (IN `pid_tienda` INT(11))  BEGIN
+		SELECT 
+f.id_factura,
+f.id_cliente,
+f.nit,
+f.direccion,
+f.estado,
+CONCAT(p1.primernombre,' ',p1.primerapellido) AS empleado,
+CONCAT(p.primernombre,' ',p.primerapellido) AS cliente,
+SUM(df.precio*df.cantidad) AS total
+FROM factura AS f 
+INNER JOIN cliente AS c ON f.id_cliente=c.id_cliente 
+INNER JOIN persona AS p on C.id_cliente=P.id_persona 
+INNER JOIN usuario AS u ON f.uuid=u.uuid 
+INNER JOIN persona AS p1 ON u.id_persona=p1.id_persona 
+INNER JOIN asigancion_tienda AS ast ON ast.uuid=u.uuid 
+LEFT JOIN detallefactura AS df ON f.id_factura=df.id_factura
+WHERE ast.id_tienda = pid_tienda
+GROUP by f.id_factura,
+f.id_cliente,
+f.nit,
+f.direccion,
+f.estado,
+CONCAT(p1.primernombre,' ',p1.primerapellido),
+CONCAT(p.primernombre,' ',p.primerapellido);
+END$$
+
+DROP PROCEDURE IF EXISTS `sp_search_factura_single`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_factura_single` (IN `pid_tienda` INTEGER(11), IN `pid_factura` INTEGER(11))  BEGIN
+SELECT 
+f.id_factura,
+f.id_cliente,
+f.nit,
+f.direccion,
+f.estado,
+CONCAT(p1.primernombre,' ',p1.primerapellido) AS empleado,
+CONCAT(p.primernombre,' ',p.primerapellido) AS cliente,
+SUM(df.precio*df.cantidad) AS total
+FROM factura AS f 
+INNER JOIN cliente AS c ON f.id_cliente=c.id_cliente 
+INNER JOIN persona AS p on C.id_cliente=P.id_persona 
+INNER JOIN usuario AS u ON f.uuid=u.uuid 
+INNER JOIN persona AS p1 ON u.id_persona=p1.id_persona 
+INNER JOIN asigancion_tienda AS ast ON ast.uuid=u.uuid 
+LEFT JOIN detallefactura AS df ON f.id_factura=df.id_factura
+WHERE ast.id_tienda = pid_tienda AND f.id_factura = pid_factura
+GROUP by f.id_factura,
+f.id_cliente,
+f.nit,
+f.direccion,
+f.estado,
+CONCAT(p1.primernombre,' ',p1.primerapellido),
+CONCAT(p.primernombre,' ',p.primerapellido);
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_search_horario`$$
@@ -213,6 +309,14 @@ END$$
 DROP PROCEDURE IF EXISTS `sp_search_persona_single`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_persona_single` (IN `id` INTEGER(11))  BEGIN
 	SELECT id_persona,primernombre,segundonombre,primerapellido,segundoapellido,direccion,nit,telefono FROM persona WHERE id_persona=id;
+END$$
+
+DROP PROCEDURE IF EXISTS `sp_search_producto`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_producto` (IN `pid_articulo` INT(11), IN `pid_tienda` INT(11))  BEGIN
+SELECT i.id_articulo,i.id_tienda,t.tienda,i.id_tipo,tp.tipo,i.articulo,i.descripcion,i.precio,i.stock,i.imagen FROM inventario AS i
+	INNER JOIN tienda AS t ON t.id_tienda=i.id_tienda
+	INNER JOIN tipo AS tp ON tp.id_tipo=i.id_tipo 
+	WHERE i.id_articulo=pid_articulo AND i.id_tienda= pid_tienda;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_search_proveedor`$$
@@ -271,6 +375,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_session` (IN `pusuario` VARCHAR(
 	SELECT * FROM usuario WHERE usuario=pusuario AND id_rol = pid_rol;
 END$$
 
+DROP PROCEDURE IF EXISTS `sp_session_usuario`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_session_usuario` (IN `pusuario` VARCHAR(128), IN `pid_rol` INT(11))  BEGIN
+	SELECT u.*,t.* FROM usuario AS u INNER JOIN asigancion_tienda AS ast ON u.uuid=ast.uuid INNER JOIN tienda AS t ON t.id_tienda=ast.id_tienda WHERE u.usuario=pusuario AND u.id_rol = pid_rol;
+END$$
+
 DROP PROCEDURE IF EXISTS `sp_update_descripcion`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_descripcion` (IN `id` INT(11), IN `pid_articulo` INT(11), IN `pdescripcion` VARCHAR(128))  BEGIN
 	UPDATE descripcion SET id_articulo=pid_articulo, descripcion = pdescripcion WHERE id_descripcion= id;
@@ -327,7 +436,8 @@ CREATE TABLE IF NOT EXISTS `asigancion_tienda` (
 --
 
 INSERT INTO `asigancion_tienda` (`id_tienda`, `uuid`) VALUES
-(1, '1825410');
+(1, '1825410'),
+(1, '26262626');
 
 -- --------------------------------------------------------
 
@@ -366,7 +476,8 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 
 INSERT INTO `cliente` (`id_cliente`, `usuario`, `clave`) VALUES
 (3, '26262626', '26262626'),
-(4, '10101010', '10101010');
+(4, '10101010', '10101010'),
+(5, '252525', '252525');
 
 -- --------------------------------------------------------
 
@@ -391,7 +502,7 @@ CREATE TABLE IF NOT EXISTS `compras` (
 --
 
 INSERT INTO `compras` (`id_compra`, `id_proveedor`, `id_articulo`, `cantidad`, `precio`) VALUES
-(1, 1, 1, 25, 11.00);
+(1, 1, 1, 50, 11.00);
 
 -- --------------------------------------------------------
 
@@ -430,6 +541,13 @@ CREATE TABLE IF NOT EXISTS `detallefactura` (
   PRIMARY KEY (`id_factura`,`id_articulo`),
   KEY `Relationship13` (`id_articulo`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `detallefactura`
+--
+
+INSERT INTO `detallefactura` (`id_factura`, `id_articulo`, `precio`, `cantidad`) VALUES
+(2, 1, 11.00, 20);
 
 -- --------------------------------------------------------
 
@@ -470,7 +588,17 @@ CREATE TABLE IF NOT EXISTS `factura` (
   PRIMARY KEY (`id_factura`),
   KEY `IX_Relationship26` (`uuid`),
   KEY `IX_Relationship31` (`id_cliente`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `factura`
+--
+
+INSERT INTO `factura` (`id_factura`, `uuid`, `id_cliente`, `nit`, `direccion`, `fecha`, `estado`) VALUES
+(1, '26262626', 5, '252525', 'Jalapa', '2020-10-20', 'ANULADA'),
+(2, '26262626', 5, '252525', 'Jalapa', '2020-10-20', 'CANCELADA'),
+(3, '26262626', 5, '252525', 'Jalapa', '2020-10-20', 'ANULADA'),
+(4, '26262626', 5, '252525', 'Jalapa', '2020-10-20', 'PROCESO');
 
 -- --------------------------------------------------------
 
@@ -543,7 +671,7 @@ CREATE TABLE IF NOT EXISTS `inventario` (
 --
 
 INSERT INTO `inventario` (`id_articulo`, `id_tienda`, `id_tipo`, `articulo`, `descripcion`, `precio`, `stock`, `imagen`) VALUES
-(1, 1, 1, 'leche', 'es leche de vaca', 11.00, 25, 'http://localhost:3000/files/1603135575896Letras.png.png');
+(1, 1, 1, 'leche', 'es leche de vaca', 11.00, 30, 'http://localhost:3000/files/1603135575896Letras.png.png');
 
 -- --------------------------------------------------------
 
@@ -575,7 +703,7 @@ CREATE TABLE IF NOT EXISTS `persona` (
   `nit` varchar(16) NOT NULL,
   `telefono` varchar(16) NOT NULL,
   PRIMARY KEY (`id_persona`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `persona`
@@ -585,7 +713,8 @@ INSERT INTO `persona` (`id_persona`, `primernombre`, `segundonombre`, `primerape
 (1, 'Yocelin', 'Sarai', 'Bonilla', 'Bonilla', 'Jalapa', '252525', '51227590'),
 (2, 'Victor', 'Isaias', 'Bonilla', 'Chalo', 'Jalapa', '181818', '41891552'),
 (3, 'Gerson', 'Arisai', 'Ramos', 'Portillo', 'Jalapa', '26262626', '25478595'),
-(4, 'Mayte', 'Loredana', 'Chalo', 'Martinez', 'Jalapa', '10101010', '54785253');
+(4, 'Mayte', 'Loredana', 'Chalo', 'Martinez', 'Jalapa', '10101010', '54785253'),
+(5, 'Arisai', 'Gerson', 'Portillo', 'Ramos', 'Jalapa', '252525', '12345678');
 
 -- --------------------------------------------------------
 
@@ -691,7 +820,8 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`uuid`, `id_persona`, `id_rol`, `usuario`, `pass`) VALUES
-('1825410', 1, 1, 'Yos', '1234');
+('1825410', 1, 1, 'Yos', '1234'),
+('26262626', 3, 2, 'Ger', '1234');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
