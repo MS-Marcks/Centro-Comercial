@@ -9,8 +9,8 @@ import { Factura } from './../../models/factura/factura';
 })
 export class FacturaService {
 
-  private urlbase = 'http://localhost:3000/api/usuario/factura';
-  private urlbaseCliente = 'http://localhost:3000/api/usuario/cliente';
+  private urlbase = 'http://apicomercial.pvivirtual.com/api/usuario/factura';
+  private urlbaseCliente = 'http://apicomercial.pvivirtual.com/api/usuario/cliente';
 
   constructor(private Http: HttpClient) { }
   Get(id): Observable<Factura[]> {

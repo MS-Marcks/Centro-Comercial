@@ -10,9 +10,9 @@ import { Usuario } from 'src/app/models/usuario/usuario';
 })
 export class AsignacionService {
 
-  private urlbase = 'http://localhost:3000/api/admin/asigaciontienda';
-  private urlbasetienda = 'http://localhost:3000/api/admin/tienda';
-  private urlbaseuuid = 'http://localhost:3000/api/admin/usuario';
+  private urlbase = 'http://apicomercial.pvivirtual.com/api/admin/asigaciontienda';
+  private urlbasetienda = 'http://apicomercial.pvivirtual.com/api/admin/tienda';
+  private urlbaseuuid = 'http://apicomercial.pvivirtual.com/api/admin/usuario';
 
   constructor(private Http: HttpClient) { }
 

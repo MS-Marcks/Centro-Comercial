@@ -11,3 +11,10 @@ BEGIN
 	SELECT u.*,t.* FROM usuario AS u INNER JOIN asigancion_tienda AS ast ON u.uuid=ast.uuid INNER JOIN tienda AS t ON t.id_tienda=ast.id_tienda WHERE u.usuario=pusuario AND u.id_rol = pid_rol;
 END $
 
+
+
+DELIMITER $
+CREATE  PROCEDURE `sp_session_cliente` (IN `pusuario` VARCHAR(32))
+BEGIN
+	SELECT * FROM cliente  WHERE usuario = pusuario;
+END$

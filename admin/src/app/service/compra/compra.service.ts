@@ -9,9 +9,9 @@ import { Proveedor } from 'src/app/models/proveedor/proveedor';
   providedIn: 'root'
 })
 export class CompraService {
-  private urlbase = 'http://localhost:3000/api/admin/compras';
-  private urlbaseinvetario = 'http://localhost:3000/api/admin/inventario';
-  private urlbaseproveedor = 'http://localhost:3000/api/admin/proveedor';
+  private urlbase = 'http://apicomercial.pvivirtual.com/api/admin/compras';
+  private urlbaseinvetario = 'http://apicomercial.pvivirtual.com/api/admin/inventario';
+  private urlbaseproveedor = 'http://apicomercial.pvivirtual.com/api/admin/proveedor';
   constructor(private Http: HttpClient) { }
 
   Get(): Observable<Compra[]> {

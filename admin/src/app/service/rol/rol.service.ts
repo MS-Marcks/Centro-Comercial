@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RolService {
-  private urlbase = 'http://localhost:3000/api/admin/rol';
+  private urlbase = 'http://apicomercial.pvivirtual.com/api/admin/rol';
   constructor(private Http: HttpClient) { }
 
   Get(): Observable<Rol[]> {

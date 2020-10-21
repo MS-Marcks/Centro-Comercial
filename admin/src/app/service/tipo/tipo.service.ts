@@ -7,7 +7,7 @@ import { Tipo } from '../../models/tipo/tipo';
   providedIn: 'root'
 })
 export class TipoService {
-  private urlbase = 'http://localhost:3000/api/admin/tipoproducto';
+  private urlbase = 'http://apicomercial.pvivirtual.com/api/admin/tipoproducto';
   constructor(private Http: HttpClient) { }
 
   Get(): Observable<Tipo[]> {

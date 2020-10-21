@@ -9,8 +9,8 @@ import { Horario } from './../../models/horario/horario';
 })
 export class HorarioService {
 
-  private urlbase = 'http://localhost:3000/api/admin/horario';
-  private urlbaseuuid = 'http://localhost:3000/api/admin/usuario';
+  private urlbase = 'http://apicomercial.pvivirtual.com/api/admin/horario';
+  private urlbaseuuid = 'http://apicomercial.pvivirtual.com/api/admin/usuario';
   constructor(private Http: HttpClient) { }
   Get(): Observable<Horario[]> {
     return this.Http.get<Horario[]>(this.urlbase);

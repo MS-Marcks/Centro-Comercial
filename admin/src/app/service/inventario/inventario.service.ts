@@ -9,9 +9,9 @@ import { Tipo } from 'src/app/models/tipo/tipo';
   providedIn: 'root'
 })
 export class InventarioService {
-  private urlbase = 'http://localhost:3000/api/admin/inventario';
-  private urlbasetienda = 'http://localhost:3000/api/admin/tienda';
-  private urlbasetipo = 'http://localhost:3000/api/admin/tipoproducto';
+  private urlbase = 'http://apicomercial.pvivirtual.com/api/admin/inventario';
+  private urlbasetienda = 'http://apicomercial.pvivirtual.com/api/admin/tienda';
+  private urlbasetipo = 'http://apicomercial.pvivirtual.com/api/admin/tipoproducto';
   constructor(private Http: HttpClient) { }
 
   Get(): Observable<Inventario[]> {

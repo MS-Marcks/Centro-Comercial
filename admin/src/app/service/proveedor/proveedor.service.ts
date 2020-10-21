@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProveedorService {
-  private urlbase = 'http://localhost:3000/api/admin/proveedor';
+  private urlbase = 'http://apicomercial.pvivirtual.com/api/admin/proveedor';
   constructor(private Http: HttpClient) { }
 
   Get(): Observable<Proveedor[]> {

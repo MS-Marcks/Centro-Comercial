@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.7.3",
     "firebase": "^4.9.1",
@@ -18,7 +19,9 @@
     "react-native-beacons-manager": "^1.0.7",
     "react-native-bluetooth-state": "^2.0.0",
     "react-native-dimension": "^1.0.6",
+    "react-native-fs": "^2.16.6",
     "react-native-gesture-handler": "^1.8.0",
+    "react-native-push-notification": "^6.1.1",
     "react-native-reanimated": "^1.13.0",
     "react-native-safe-area-context": "^3.1.7",
     "react-native-screens": "^2.10.1",

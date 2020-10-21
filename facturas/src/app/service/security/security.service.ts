@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SecurityService {
-  private URI = 'http://localhost:3000/api/usuario/';
+  private URI = 'http://apicomercial.pvivirtual.com/api/usuario/';
 
   constructor(private http: HttpClient) { }
 

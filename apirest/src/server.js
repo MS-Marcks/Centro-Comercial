@@ -5,6 +5,7 @@ import helmet from 'helmet'
 import bodyParser from 'body-parser';
 import Routeadmin from './Config/router.admin'
 import RouteUsuario from './Config/router.usuario'
+import RotueCliente from './Config/router.cliente'
 import auth from './Tools/Middleware/auth';
 
 const AUTHOptions = {
@@ -23,6 +24,14 @@ const UserAUTHOptions = {
     EncryptionMethod: "HS256"
 }
 
+/*const ClienteAUTHOptions = {
+    UrlStart: "/session",
+    ActiveTime: 60 * 60 * 60 * 24 * 30,
+    KEY_TOKEN: process.env.KEY_TOKEN_USER,
+    NameToken: "access-token-cli",
+    EncryptionMethod: "HS256"
+}
+*/
 
 const app = express();
 
@@ -35,10 +44,10 @@ app.use(bodyParser.json())
 app.get('/files/:img', function (req, res) {
     res.sendFile(`${__dirname.split('\\src')[0]}/files/${req.params.img}`);
 });
-app.use('/api/admin',auth(AUTHOptions), Routeadmin)
-app.use('/api/usuario',auth(UserAUTHOptions), RouteUsuario)
-/*app.use('api/cliente',Routeadmin)
-app.use('api/sistema',Routeadmin)*/
+app.use('/api/admin', auth(AUTHOptions), Routeadmin)
+app.use('/api/usuario', auth(UserAUTHOptions), RouteUsuario)
+app.use('/api/cliente', RotueCliente)
+
 const server = app.listen(process.env.PORT || 3000, () => {
     console.log(`http:localhost:${server.address().port}`)
 })

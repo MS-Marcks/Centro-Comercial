@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 20-10-2020 a las 18:54:50
+-- Tiempo de generación: 21-10-2020 a las 00:39:23
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 5.6.40
 
@@ -174,6 +174,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_tipo` (IN `id` INTEGER(11
 	DELETE FROM tipo WHERE id_tipo=id;
 END$$
 
+DROP PROCEDURE IF EXISTS `sp_seach_articulos`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_seach_articulos` (IN `id` INTEGER(11))  BEGIN
+    SELECT i.imagen,de.descripcion,t.id_tipo,t.tipo FROM cliente AS c JOIN factura AS f ON c.id_cliente = f.id_cliente
+    INNER JOIN detallefactura as ds ON ds.id_factura = f.id_factura
+    INNER JOIN inventario AS i ON i.id_articulo = ds.id_articulo
+    INNER JOIN tipo AS t ON t.id_tipo=i.id_tipo
+    INNER JOIN descripcion AS de ON de.id_articulo= i.id_articulo
+    WHERE c.id_cliente = id ORDER BY ds.cantidad DESC LIMIT 1;
+END$$
+
 DROP PROCEDURE IF EXISTS `sp_search_asigancion_tienda`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_asigancion_tienda` ()  BEGIN
 SELECT ast.id_tienda,ast.uuid,u.usuario,t.tienda FROM asigancion_tienda AS ast INNER JOIN tienda AS t ON ast.id_tienda=t.id_tienda
@@ -282,6 +292,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_ibeacoins` ()  BEGIN
 	SELECT identifier,uuid,major,minor FROM ibeacoins;
 END$$
 
+DROP PROCEDURE IF EXISTS `sp_search_ibeacoins_cliente`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_ibeacoins_cliente` ()  BEGIN
+	SELECT * FROM ibeacoins;
+END$$
+
 DROP PROCEDURE IF EXISTS `sp_search_ibeacoins_single`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_ibeacoins_single` (IN `id` VARCHAR(128))  BEGIN
 	SELECT identifier,uuid,major,minor FROM ibeacoins WHERE identifier= id;
@@ -354,6 +369,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_tipo` ()  BEGIN
 	SELECT id_tipo,tipo FROM tipo;
 END$$
 
+DROP PROCEDURE IF EXISTS `sp_search_tipo_cliente`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_tipo_cliente` ()  BEGIN
+	SELECT distinct  ib.identifier,t.id_tipo FROM ibeacoins AS ib INNER JOIN display AS di ON ib.identifier=di.identifier
+	INNER JOIN tipo AS t ON t.id_tipo=di.id_tipo;
+END$$
+
 DROP PROCEDURE IF EXISTS `sp_search_tipo_single`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_search_tipo_single` (IN `id` INTEGER(11))  BEGIN
 	SELECT id_tipo,tipo FROM tipo WHERE id_tipo=id;
@@ -373,6 +394,11 @@ END$$
 DROP PROCEDURE IF EXISTS `sp_session`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_session` (IN `pusuario` VARCHAR(128), IN `pid_rol` INT(11))  BEGIN
 	SELECT * FROM usuario WHERE usuario=pusuario AND id_rol = pid_rol;
+END$$
+
+DROP PROCEDURE IF EXISTS `sp_session_cliente`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_session_cliente` (IN `pusuario` VARCHAR(32))  BEGIN
+	SELECT * FROM cliente  WHERE usuario = pusuario;
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_session_usuario`$$
@@ -568,7 +594,7 @@ CREATE TABLE IF NOT EXISTS `display` (
 --
 
 INSERT INTO `display` (`identifier`, `id_tipo`) VALUES
-('1', 1);
+('53bdc464be5d94bd8a6c0ccc6382e809', 1);
 
 -- --------------------------------------------------------
 
@@ -643,7 +669,9 @@ CREATE TABLE IF NOT EXISTS `ibeacoins` (
 --
 
 INSERT INTO `ibeacoins` (`identifier`, `uuid`, `major`, `minor`) VALUES
-('1', '1', 1, 1);
+('275d18507618376553b8f2e11eab1939', 'B9407F30-F5F8-466E-AFF9-25556B57FE6D', 45979, 62055),
+('53bdc464be5d94bd8a6c0ccc6382e809', 'B9407F30-F5F8-466E-AFF9-25556B57FE6D', 3991, 52849),
+('93f246dd418c9bf39ff3790440db2820', 'B9407F30-F5F8http://apicomercial.pvivirtual.com6D', 65151, 9841);
 
 -- --------------------------------------------------------
 
@@ -671,7 +699,7 @@ CREATE TABLE IF NOT EXISTS `inventario` (
 --
 
 INSERT INTO `inventario` (`id_articulo`, `id_tienda`, `id_tipo`, `articulo`, `descripcion`, `precio`, `stock`, `imagen`) VALUES
-(1, 1, 1, 'leche', 'es leche de vaca', 11.00, 30, 'http://localhost:3000/files/1603135575896Letras.png.png');
+(1, 1, 1, 'leche', 'es leche de vaca', 11.00, 30, 'http://192.168.43.7:3000/files/1603135575896Letras.png.png');
 
 -- --------------------------------------------------------
 

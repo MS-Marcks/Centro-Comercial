@@ -9,9 +9,9 @@ import { Detalle } from './../../models/detalle/detalle';
 })
 export class DetalleService {
 
-  private urlbase = 'http://localhost:3000/api/usuario/detalle';
-  private urlbaseProducto = 'http://localhost:3000/api/usuario/producto';
-  private urlbaseFactura = 'http://localhost:3000/api/usuario/factura';
+  private urlbase = 'http://apicomercial.pvivirtual.com/api/usuario/detalle';
+  private urlbaseProducto = 'http://apicomercial.pvivirtual.com/api/usuario/producto';
+  private urlbaseFactura = 'http://apicomercial.pvivirtual.com/api/usuario/factura';
 
   constructor(private Http: HttpClient) { }
   Get(id: number): Observable<Detalle[]> {
