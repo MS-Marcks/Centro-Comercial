@@ -3,23 +3,24 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar class="bg-warning text-light" >Menu</mat-toolbar>
+    <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <ng-container *ngIf="GetToken();">
-        <a mat-list-item routerLink='tipoproducto'><i class="fa fa-archive"></i> Tipo Producto </a>
-        <a mat-list-item routerLink="tienda"><i class="fa fa-building"></i> Tiendas</a>
-        <a mat-list-item routerLink="inventario"><i class="fa fa-file-text"></i> Inventario</a>
-        <a mat-list-item routerLink="descripcion"><i class="fa fa-edit"></i> Descripcion</a>
-        <a mat-list-item routerLink="compra"><i class="fa fa-shopping-cart"></i> Compras</a>
-        <a mat-list-item routerLink="proveedor"><i class="fa fa-handshake-o"></i> Proveedor</a>
-        <a mat-list-item routerLink="rol"><i class="fa fa-users"></i> Roles</a>
-        <a mat-list-item routerLink="ibeacoins"><i class="fa fa-bluetooth"></i> Ibeacoins</a>
-        <a mat-list-item routerLink="display"><i class="fa fa-cart-plus "></i> Asig Ibeacoins a Tipo Producto</a>
-        <a mat-list-item routerLink="persona"><i class="fa fa-child"></i> Persona</a>
-        <a mat-list-item routerLink="cliente"><i class="fa fa-user"></i> Cliente </a>
-        <a mat-list-item routerLink="usuario"><i class="fa fa-vcard"></i> Usuario</a>
-        <a mat-list-item routerLink="asignacion"><i class="fa fa-user-plus"></i> Asigancion de Usuario a Tienda</a>
-        <a mat-list-item routerLink="horario"><i class="fa fa-calendar-check-o"></i> Horario</a>
+        <a mat-list-item routerLink='tipoproducto'><div class="row"><div class="col-2"><i class="fa fa-archive"></i></div><div class="col-9">Tipo Producto</div></div></a>
+        <a mat-list-item routerLink="tienda">  <div class="row"><div class="col-3"><i class="fa fa-building"></i></div><div class="col-9">Tiendas</div></div> </a>
+        <a mat-list-item routerLink="inventario">  <div class="row"><div class="col-3"><i class="fa fa-file-text"></i></div><div class="col-9">Inventario</div></div></a>
+        <a mat-list-item routerLink="descripcion"><div class="row"><div class="col-3"><i class="fa fa-edit"></i></div><div class="col-8">Descripcion</div></div></a>
+        <a mat-list-item routerLink="compra"><div class="row"><div class="col-3"><i class="fa fa-shopping-cart"></i> </div><div class="col-9">Compras</div></div></a>
+        <a mat-list-item routerLink="proveedor"><div class="row"><div class="col-3"><i class="fa fa-handshake-o"></i></div><div class="col-9">Proveedor</div></div></a>
+        <a mat-list-item routerLink="rol">  <div class="row"><div class="col-4"><i class="fa fa-users"></i></div><div class="col-8">Roles</div></div></a>
+        <a mat-list-item routerLink="ibeacoins">  <div class="row"><div class="col-3"><i class="fa fa-bluetooth"></i></div><div class="col-9">Ibeacoins</div></div></a>
+        <a mat-list-item routerLink="display">  <div class="row"><div class="col-2"><i class="fa fa-cart-plus "></i></div><div class="col-10">Asig Ibeacoins a Tipo Producto</div></div></a>
+        <a mat-list-item routerLink="persona">  <div class="row"><div class="col-3"><i class="fa fa-child"></i></div><div class="col-9">Persona</div></div></a>
+        <a mat-list-item routerLink="cliente">  <div class="row"><div class="col-3"><i class="fa fa-user"></i></div><div class="col-9">Cliente</div></div></a>
+        <a mat-list-item routerLink="usuario">  <div class="row"><div class="col-3"><i class="fa fa-vcard"></i> </div><div class="col-9">Usuario</div></div></a>
+        <a mat-list-item routerLink="asignacion">  <div class="row"><div class="col-2"><i class="fa fa-user-plus"></i></div><div class="col-10">Asig de Usuario a Tienda</div></div></a>
+        <a mat-list-item routerLink="horario">  <div class="row"><div class="col-3"><i class="fa fa-calendar-check-o"></i></div><div class="col-9">Horario</div></div></a>
+
       </ng-container>
     </mat-nav-list>
   </mat-sidenav>
