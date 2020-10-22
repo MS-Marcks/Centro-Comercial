@@ -1,21 +1,21 @@
-#include <SoftwareSerial.h>
-SoftwareSerial SerialESP8266(3, 2); // RX, TX
+/*#include <SoftwareSerial.h>
+  SoftwareSerial SerialESP8266(3, 2); // RX, TX
 
-String server = "www.apicomercial.pvivirtual.com";
+  String server = "www.apicomercial.pvivirtual.com";
 
-String cadena = "";
+  String cadena = "";
 
-#include <SPI.h>
-#include <MFRC522.h>
+  #include <SPI.h>
+  #include <MFRC522.h>
 
-#define RST_PIN         9
-#define SS_PIN          10
+  #define RST_PIN         9
+  #define SS_PIN          10
 
-String Estado = "0";
-char dato = ' ';
-MFRC522 mfrc522(SS_PIN, RST_PIN);
+  String Estado = "0";
+  char dato = ' ';
+  MFRC522 mfrc522(SS_PIN, RST_PIN);
 
-void setup() {
+  void setup() {
 
   SerialESP8266.begin(9600);
   Serial.begin(9600);
@@ -53,9 +53,9 @@ void setup() {
   mfrc522.PCD_Init();
   delay(4);
   menu();
-}
+  }
 
-void loop() {
+  void loop() {
   CapturarTexto();
   if (dato != ' ') {
     if (dato == '1') {
@@ -69,9 +69,9 @@ void loop() {
       Marcar();
     }
   }
-}
+  }
 
-void Marcar() {
+  void Marcar() {
   while (!mfrc522.PICC_IsNewCardPresent()) {
     delay(500);
   }
@@ -88,22 +88,22 @@ void Marcar() {
   Serial.println(String(uuid));
   EnviarDatos(uuid, dato);
   mfrc522.PICC_HaltA();
-}
+  }
 
-void menu() {
+  void menu() {
   Serial.println("========================== MENU =========================");
   Serial.println("1) INGRESAR");
   Serial.println("2) REGRESAR");
   Serial.println("3) SALIDA");
   Serial.println("OPCION.....");
-}
-void CapturarTexto() {
+  }
+  void CapturarTexto() {
   if (Serial.available() > 0)
   {
     dato = Serial.read();
   }
-}
-void EnviarDatos(String uuid, char estado) {
+  }
+  void EnviarDatos(String uuid, char estado) {
 
   SerialESP8266.println("AT+CIPSTART=\"TCP\",\"" + server + "\",80");
   while (SerialESP8266.available() > 0)
@@ -197,4 +197,31 @@ void EnviarDatos(String uuid, char estado) {
     menu();
   }
 
+  }*/
+
+#include <SoftwareSerial.h>
+SoftwareSerial BT1(3, 2); // RX | TX
+
+void setup()
+{
+  Serial.begin(9600);
+  BT1.begin(9600);
+}
+
+void loop()
+{
+  String B = "." ;
+  BT1.println("AT");
+  if (BT1.find("OK")) {
+    Serial.println("hola");
+  }
+  if (BT1.available())
+  { char c = BT1.read() ;
+    Serial.print(c);
+  }
+  if (Serial.available())
+  { char c = Serial.read();
+    BT1.print(c);
+  }
+  delay(500);
 }

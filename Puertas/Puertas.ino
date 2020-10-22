@@ -99,7 +99,7 @@ void fun_ProximetroPuerta(struct pt *pt) {
     long distanciaP = sonarPuerta.ping_cm();
     if ( distanciaP < 10 && distanciaP != 0) {
       HabilitarPuerta = true;
-      Serial.print("adios");
+      Serial.println("adios");
     } else {
       HabilitarPuerta = false;
     }

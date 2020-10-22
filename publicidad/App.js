@@ -13,9 +13,9 @@ import {
   Alert,
   TextInput,
   TouchableHighlight,
-  Dimensions
+  Dimensions,
 } from 'react-native';
-
+import Icon from 'react-native-vector-icons/Ionicons';
 import Beacons from 'react-native-beacons-manager';
 import { CargarIbeacoins, CargarProductos, CargarTipo } from './src/LoadData'
 var PushNotification = require('react-native-push-notification')
@@ -71,7 +71,7 @@ class App extends Component {
     let pass = this.state.pass;
     Alert.alert(user, pass);
     if (user != "" && pass != "") {
-      fetch(`https://www.apicomercial.pvivirtual.com/cliente/session/${user}/${pass}`, {
+      fetch(`https://www.apicomercial.pvivirtual.com/api/cliente/session/${user}/${pass}`, {
         method: 'POST',
         header: {
           'Accept': 'application/json',
@@ -107,7 +107,8 @@ class App extends Component {
             <View style={SInicio.CentradoTitulo}><Text style={SInicio.Titulo}>INICIAR SESION</Text></View>
           </View>
 
-          <View>
+          <View style={SInicio.ContenedorInicio}>
+          
             <TextInput style={SInicio.campos} placeholder="NIT" onChangeText={(user) => this.setState({ user })} value={this.state.user} />
             <TextInput style={SInicio.campos} secureTextEntry={true} placeholder="Contraseña" onChangeText={(pass) => this.setState({ pass })} value={this.state.pass} />
             <TouchableHighlight style={SInicio.btnIniciarSesion} onPress={() => { this.funIniciarSesion() }}>
@@ -255,9 +256,9 @@ export const SInicio = StyleSheet.create({
     paddingBottom: 20,
     color: '#fff',
     textAlign: 'center',
-    backgroundColor: '#68a0cf',
+    backgroundColor: '#ffffff',
     borderBottomWidth: 5,
-    borderColor: '#081A45'
+    borderColor: '#FAD02C'
   },
   Ctexto: {
     width: width(100),
@@ -267,24 +268,34 @@ export const SInicio = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 20,
     textAlign: 'center',
-    backgroundColor: '#081A45'
+    backgroundColor: '#FAD02C'
   },
   Texto: {
     fontSize: totalSize(4),
     color: '#fff',
-    width: width(90),
-
+    width: width(80),
+    textAlign: 'center',
+    backgroundColor: '#3F51B5',
+    borderRadius: 4,
+    padding: 10,
+    borderWidth: 5,
+    borderColor: '#1A34B2'
+    
+  },
+  ContenedorInicio:{
+    alignItems: "center",
+    marginTop: Dimensions.get('window').height /6,
   },
   contenendor: {
     flex: 1,
   },
   nav: {
     flexDirection: 'row',
-    height: Dimensions.get('window').height / 9 + 3,
-    backgroundColor: "#962F2F",
+    height: Dimensions.get('window').height / 9 + 7,
+    backgroundColor: "#FAD02C",
     justifyContent: 'center',
     borderWidth: 3,
-    borderColor: '#661F1F',
+    borderColor: '#FAD02C',
   },
   CentradoTitulo: {
     flex: 1,
@@ -292,11 +303,9 @@ export const SInicio = StyleSheet.create({
     justifyContent: 'center',
   },
   Titulo: {
-    marginLeft: ((Dimensions.get('window').width / 3) / 3) - 20,
+  
     fontSize: ((Dimensions.get('window').width / 3) / 4),
-    width: ((Dimensions.get('window').width / 2)),
-    marginTop: 10,
-    color: 'white'
+    color: '#3F51B5'
   },
   body: {
     flex: 1,
@@ -313,8 +322,8 @@ export const SInicio = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 4,
     borderWidth: 2,
-    borderColor: '#d6d7da',
-    backgroundColor: '#A21C1C',
+    borderColor: '#3F51B5',
+    backgroundColor: '#3F51B5',
   },
   TituloBoton: {
     color: 'white',

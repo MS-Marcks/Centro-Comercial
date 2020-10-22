@@ -96,7 +96,7 @@ void Sensor1(unsigned long currentMillis) {
     valsensor1 = !digitalRead(SENSOR1);
     //estadoanterior= val;
     //if()
-    Firebase.setInt("estaciomanieto/0/ocupado", valsensor1);
+    Firebase.setInt("estacionamiento/0/ocupado", valsensor1);
 
   }
   else if ((Statesensor1 == false) && (currentMillis - previousMillissensor1 >= OffTimesensor1))
@@ -114,7 +114,7 @@ void Sensor2(unsigned long currentMillis) {
     valsensor2 = !digitalRead(SENSOR2);
     //estadoanterior= val;
     //if()
-    Firebase.setInt("estaciomanieto/1/ocupado", valsensor2);
+    Firebase.setInt("estacionamiento/1/ocupado", valsensor2);
 
   }
   else if ((Statesensor2 == false) && (currentMillis - previousMillissensor2 >= OffTimesensor2))

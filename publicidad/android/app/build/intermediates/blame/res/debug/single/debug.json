@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\PROYECTO_ARQUITECTURA\\publicidad\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_material_on_background_emphasis_medium.xml.flat",
-        "source": "C:\\Users\\Gerson Ramos\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\color\\material_on_background_emphasis_medium.xml"
-    },
-    {
         "merged": "C:\\PROYECTO_ARQUITECTURA\\publicidad\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_menu_cut_mtrl_alpha.png.flat",
         "source": "C:\\Users\\Gerson Ramos\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-xxxhdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png"
+    },
+    {
+        "merged": "C:\\PROYECTO_ARQUITECTURA\\publicidad\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_material_on_background_emphasis_medium.xml.flat",
+        "source": "C:\\Users\\Gerson Ramos\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\color\\material_on_background_emphasis_medium.xml"
     },
     {
         "merged": "C:\\PROYECTO_ARQUITECTURA\\publicidad\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
@@ -76,12 +76,12 @@
         "source": "C:\\Users\\Gerson Ramos\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-mdpi-v4\\abc_btn_radio_to_on_mtrl_000.png"
     },
     {
-        "merged": "C:\\PROYECTO_ARQUITECTURA\\publicidad\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_edit_text_material.xml.flat",
-        "source": "C:\\Users\\Gerson Ramos\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable\\abc_edit_text_material.xml"
-    },
-    {
         "merged": "C:\\PROYECTO_ARQUITECTURA\\publicidad\\android\\app\\build\\intermediates\\res\\merged\\debug\\animator_mtrl_extended_fab_show_motion_spec.xml.flat",
         "source": "C:\\Users\\Gerson Ramos\\.gradle\\caches\\transforms-2\\files-2.1\\863e0c3c6716935cd3657ad638fd992d\\material-1.1.0\\res\\animator\\mtrl_extended_fab_show_motion_spec.xml"
+    },
+    {
+        "merged": "C:\\PROYECTO_ARQUITECTURA\\publicidad\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_edit_text_material.xml.flat",
+        "source": "C:\\Users\\Gerson Ramos\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable\\abc_edit_text_material.xml"
     },
     {
         "merged": "C:\\PROYECTO_ARQUITECTURA\\publicidad\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
@@ -152,12 +152,12 @@
         "source": "C:\\Users\\Gerson Ramos\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-xhdpi-v4\\abc_ic_star_half_black_48dp.png"
     },
     {
-        "merged": "C:\\PROYECTO_ARQUITECTURA\\publicidad\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_switch_track_mtrl_alpha.9.png.flat",
-        "source": "C:\\Users\\Gerson Ramos\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-mdpi-v4\\abc_switch_track_mtrl_alpha.9.png"
-    },
-    {
         "merged": "C:\\PROYECTO_ARQUITECTURA\\publicidad\\android\\app\\build\\intermediates\\res\\merged\\debug\\color-v23_abc_btn_colored_text_material.xml.flat",
         "source": "C:\\Users\\Gerson Ramos\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\color-v23\\abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "C:\\PROYECTO_ARQUITECTURA\\publicidad\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_switch_track_mtrl_alpha.9.png.flat",
+        "source": "C:\\Users\\Gerson Ramos\\.gradle\\caches\\transforms-2\\files-2.1\\1cb9b9ea592aa2ea85233be252327dcf\\appcompat-1.1.0\\res\\drawable-mdpi-v4\\abc_switch_track_mtrl_alpha.9.png"
     },
     {
         "merged": "C:\\PROYECTO_ARQUITECTURA\\publicidad\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_fade_out.xml.flat",
