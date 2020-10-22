@@ -4,7 +4,7 @@ import {
     Alert
 } from 'react-native';
 export const CargarIbeacoins = async () => {
-    return fetch('http://apicomercial.pvivirtual.com/api/cliente/ibeacoins', {
+    return fetch('https://www.apicomercial.pvivirtual.com/api/cliente/ibeacoins', {
         method: 'GET',
         header: {
             'Accept': 'application/json',
@@ -20,7 +20,7 @@ export const CargarIbeacoins = async () => {
 
 export const CargarProductos = async () => {
     const id = await AsyncStorage.getItem('id_cliente')
-    return fetch(`http://apicomercial.pvivirtual.com/api/cliente/producto/${id}`, {
+    return fetch(`https://www.apicomercial.pvivirtual.com/api/cliente/producto/${id}`, {
         method: 'GET',
         header: {
             'Accept': 'application/json',
@@ -34,7 +34,7 @@ export const CargarProductos = async () => {
         });
 }
 export const CargarTipo = () => {
-    return fetch(`http://apicomercial.pvivirtual.com/api/cliente/tipo`, {
+    return fetch(`https://www.apicomercial.pvivirtual.com/api/cliente/tipo`, {
         method: 'GET',
         header: {
             'Accept': 'application/json',

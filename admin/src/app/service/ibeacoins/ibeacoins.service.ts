@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class IbeacoinsService {
-  private urlbase = 'http://apicomercial.pvivirtual.com/api/admin/ibeacoins';
+  private urlbase = 'https://www.apicomercial.pvivirtual.com/api/admin/ibeacoins';
   constructor(private Http: HttpClient) { }
 
   Get(): Observable<Ibeacoins[]> {

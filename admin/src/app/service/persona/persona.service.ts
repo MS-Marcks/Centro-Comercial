@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PersonaService {
-  private urlbase = 'http://apicomercial.pvivirtual.com/api/admin/persona';
+  private urlbase = 'https://www.apicomercial.pvivirtual.com/api/admin/persona';
   constructor(private Http: HttpClient) { }
 
   Get(): Observable<Persona[]> {

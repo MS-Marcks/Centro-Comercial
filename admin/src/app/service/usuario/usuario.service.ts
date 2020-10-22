@@ -9,9 +9,9 @@ import { Rol } from 'src/app/models/rol/rol';
   providedIn: 'root'
 })
 export class UsuarioService {
-  private urlbase = 'http://apicomercial.pvivirtual.com/api/admin/usuario';
-  private urlbaseper = 'http://apicomercial.pvivirtual.com/api/admin/persona';
-  private urlbaserol = 'http://apicomercial.pvivirtual.com/api/admin/rol';
+  private urlbase = 'https://www.apicomercial.pvivirtual.com/api/admin/usuario';
+  private urlbaseper = 'https://www.apicomercial.pvivirtual.com/api/admin/persona';
+  private urlbaserol = 'https://www.apicomercial.pvivirtual.com/api/admin/rol';
   constructor(private Http: HttpClient) { }
 
   Get(): Observable<Usuario[]> {

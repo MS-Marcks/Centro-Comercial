@@ -1,7 +1,7 @@
 import Connect from '../../../../Config/Connect'
 import mysql from 'mysql'
 
-const server = 'http://apicomercial.pvivirtual.com/files/'
+const server = 'https://www.apicomercial.pvivirtual.com/files/'
 class ControllerInventario {
     static Create(req, res) {
         try {

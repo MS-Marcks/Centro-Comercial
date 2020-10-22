@@ -71,7 +71,7 @@ class App extends Component {
     let pass = this.state.pass;
     Alert.alert(user, pass);
     if (user != "" && pass != "") {
-      fetch(`http://apicomercial.pvivirtual.com/api/cliente/session/${user}/${pass}`, {
+      fetch(`https://www.apicomercial.pvivirtual.com/cliente/session/${user}/${pass}`, {
         method: 'POST',
         header: {
           'Accept': 'application/json',

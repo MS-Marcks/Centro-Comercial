@@ -6,12 +6,13 @@ import bodyParser from 'body-parser';
 import Routeadmin from './Config/router.admin'
 import RouteUsuario from './Config/router.usuario'
 import RotueCliente from './Config/router.cliente'
+import RouteSistema from './Config/router.sistema'
 import auth from './Tools/Middleware/auth';
 
 const AUTHOptions = {
     UrlStart: "/session",
     ActiveTime: "5h",
-    KEY_TOKEN: process.env.KEY_TOKEN_ADMIN,
+    KEY_TOKEN: (typeof process.env.KEY_TOKEN_ADMIN !== 'undefined') ? process.env.KEY_TOKEN_ADMIN : 'wbuekAFw(zQg(jyh9z@3lcURZfx7Be*pHFb)8tIcY$%YzKQ_OcehLR*%CC$9jbu9aJ7%q9pQ1ddb&$yUEm!F@J+Yux(rkWnrdtBf34S8Xi)fF2v5Rr*3kE3wV9i$hb_A',
     NameToken: "access-token",
     EncryptionMethod: "HS256"
 }
@@ -19,23 +20,14 @@ const AUTHOptions = {
 const UserAUTHOptions = {
     UrlStart: "/session",
     ActiveTime: "5h",
-    KEY_TOKEN: process.env.KEY_TOKEN_USER,
+    KEY_TOKEN: (typeof process.env.KEY_TOKEN_USER !== 'undefined') ? process.env.KEY_TOKEN_USER : 'smJYEKn0Bh!KGrL8e8O96QSJtmpMR)i6wiWBonee4R&0Jw&Xdj5ISkFknyCpT!ln56N0J#tuWNKtAXRXm0st)kYpQeMUf%aTHJU)P3mXCGiyk#xg763DslWgMZQ%28is',
     NameToken: "access-token-user",
     EncryptionMethod: "HS256"
 }
 
-/*const ClienteAUTHOptions = {
-    UrlStart: "/session",
-    ActiveTime: 60 * 60 * 60 * 24 * 30,
-    KEY_TOKEN: process.env.KEY_TOKEN_USER,
-    NameToken: "access-token-cli",
-    EncryptionMethod: "HS256"
-}
-*/
 
 const app = express();
 
-//app.use();
 app.use(cors({ origin: "*" }))
 app.use(helmet());
 app.use(bodyparser.urlencoded({ extended: false }))
@@ -47,6 +39,7 @@ app.get('/files/:img', function (req, res) {
 app.use('/api/admin', auth(AUTHOptions), Routeadmin)
 app.use('/api/usuario', auth(UserAUTHOptions), RouteUsuario)
 app.use('/api/cliente', RotueCliente)
+app.use('/api/sistema', RouteSistema)
 
 const server = app.listen(process.env.PORT || 3000, () => {
     console.log(`http:localhost:${server.address().port}`)

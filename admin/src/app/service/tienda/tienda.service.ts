@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TiendaService {
-  private urlbase = 'http://apicomercial.pvivirtual.com/api/admin/tienda';
+  private urlbase = 'https://www.apicomercial.pvivirtual.com/api/admin/tienda';
   constructor(private Http: HttpClient) { }
 
   Get(): Observable<Tienda[]> {

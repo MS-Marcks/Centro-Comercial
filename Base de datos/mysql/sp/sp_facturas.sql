@@ -22,7 +22,7 @@ CONCAT(p.primernombre,' ',p.primerapellido) AS cliente,
 SUM(df.precio*df.cantidad) AS total
 FROM factura AS f 
 INNER JOIN cliente AS c ON f.id_cliente=c.id_cliente 
-INNER JOIN persona AS p on C.id_cliente=P.id_persona 
+INNER JOIN persona AS p on p.id_cliente=p.id_persona 
 INNER JOIN usuario AS u ON f.uuid=u.uuid 
 INNER JOIN persona AS p1 ON u.id_persona=p1.id_persona 
 INNER JOIN asigancion_tienda AS ast ON ast.uuid=u.uuid 

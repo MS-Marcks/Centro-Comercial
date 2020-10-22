@@ -10,9 +10,9 @@ import { Tipo } from 'src/app/models/tipo/tipo';
 })
 export class DisplayService {
 
-  private urlbase = 'http://apicomercial.pvivirtual.com/api/admin/display';
-  private urlbaseIbeacoins = 'http://apicomercial.pvivirtual.com/api/admin/ibeacoins';
-  private urlbaseTipo = 'http://apicomercial.pvivirtual.com/api/admin/tipoproducto';
+  private urlbase = 'https://www.apicomercial.pvivirtual.com/api/admin/display';
+  private urlbaseIbeacoins = 'https://www.apicomercial.pvivirtual.com/api/admin/ibeacoins';
+  private urlbaseTipo = 'https://www.apicomercial.pvivirtual.com/api/admin/tipoproducto';
 
   constructor(private Http: HttpClient) { }
 

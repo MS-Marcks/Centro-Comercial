@@ -8,8 +8,8 @@ import { Inventario } from 'src/app/models/inventario/inventario';
   providedIn: 'root'
 })
 export class DescripcionService {
-  private urlbase = 'http://apicomercial.pvivirtual.com/api/admin/descripcion';
-  private urlbaseinvetario = 'http://apicomercial.pvivirtual.com/api/admin/inventario';
+  private urlbase = 'https://www.apicomercial.pvivirtual.com/api/admin/descripcion';
+  private urlbaseinvetario = 'https://www.apicomercial.pvivirtual.com/api/admin/inventario';
   constructor(private Http: HttpClient) { }
 
   Get(): Observable<Descripcion[]> {
