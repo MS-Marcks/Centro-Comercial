@@ -8,6 +8,7 @@ import RouteUsuario from './Config/router.usuario'
 import RotueCliente from './Config/router.cliente'
 import RouteSistema from './Config/router.sistema'
 import auth from './Tools/Middleware/auth';
+import morgan from 'morgan';
 
 const AUTHOptions = {
     UrlStart: "/session",
@@ -27,7 +28,7 @@ const UserAUTHOptions = {
 
 
 const app = express();
-
+app.use(morgan('combined'))
 app.use(cors({ origin: "*" }))
 app.use(helmet());
 app.use(bodyparser.urlencoded({ extended: false }))

@@ -278,7 +278,7 @@ export const SInicio = StyleSheet.create({
     backgroundColor: '#3F51B5',
     borderRadius: 4,
     padding: 10,
-    borderWidth: 5,
+    borderWidth: 5, 
     borderColor: '#1A34B2'
     
   },

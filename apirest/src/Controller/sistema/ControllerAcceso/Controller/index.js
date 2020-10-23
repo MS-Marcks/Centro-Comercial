@@ -25,6 +25,7 @@ class ControllerTipo {
                 }
                 console.log('connected as id ' + connection.threadId);
             });
+            console.log(body)
             connection.query("CALL sp_horario_usuario (?)", [body.uuid], function (error, results, fields) {
                 if (error) { res.json(error) };
                 try {

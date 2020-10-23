@@ -1,77 +1,55 @@
-/*#include <SoftwareSerial.h>
-  SoftwareSerial SerialESP8266(3, 2); // RX, TX
+#include <ESP8266WiFi.h>
+#include <ESP8266HTTPClient.h>
 
-  String server = "www.apicomercial.pvivirtual.com";
 
-  String cadena = "";
+#include <SPI.h>
+#include <MFRC522.h>
 
-  #include <SPI.h>
-  #include <MFRC522.h>
 
-  #define RST_PIN         9
-  #define SS_PIN          10
+#define WIFI_SSID "LG K4 (2017)"
+#define WIFI_PASSWORD "123456789"
 
-  String Estado = "0";
-  char dato = ' ';
-  MFRC522 mfrc522(SS_PIN, RST_PIN);
+const char* server = "apicomercial.pvivirtual.com";
 
-  void setup() {
+#define RST_PIN  0
+#define SS_PIN  4
+char dato = ' ';
+MFRC522 mfrc522(SS_PIN, RST_PIN);
 
-  SerialESP8266.begin(9600);
-  Serial.begin(9600);
-  SerialESP8266.setTimeout(2000);
-
-  SerialESP8266.println("AT");
-  if (SerialESP8266.find("OK")) {
-    Serial.println("Respuesta AT correcto");
-  } else {
-    Serial.println("Error en ESP8266");
+void setup() {
+  Serial.begin(115200);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  Serial.print("connecting");
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(".");
+    delay(500);
   }
+  Serial.println();
+  Serial.print("connected: ");
+  Serial.println(WiFi.localIP());
 
-  SerialESP8266.println("AT+CWMODE=1");
-  if (SerialESP8266.find("OK")) {
-    Serial.println("ESP8266 en modo Estacion");
-  }
 
-  SerialESP8266.println("AT+CWJAP=\"MarcksPC\",\"12345678\"");
-  Serial.println("Conectandose a la red ...");
-  SerialESP8266.setTimeout(10000);
-  if (SerialESP8266.find("OK")) {
-    Serial.println("WIFI conectado");
-  } else {
-    Serial.println("Error al conectarse en la red");
-  }
-  SerialESP8266.setTimeout(2000);
-  SerialESP8266.println("AT+CIPMUX=0");
-  if (SerialESP8266.find("OK")) {
-    Serial.println("Multiconexiones deshabilitadas");
-  }
-  delay(1000);
-
-  while (!Serial);
   SPI.begin();
   mfrc522.PCD_Init();
-  delay(4);
+  mfrc522.PICC_HaltA();
   menu();
-  }
 
-  void loop() {
+}
+void loop() {
   CapturarTexto();
   if (dato != ' ') {
     if (dato == '1') {
-      Serial.println("PASE LA TARJETA PARA INGRESAR....");
-      Marcar();
+      Reportar();
     } else if (dato == '2') {
-      Serial.println("PASE LA TARJETA PARA REGRESO O REGRESAR....");
-      Marcar();
+      Reportar();
     } else if (dato == '3') {
-      Serial.println("PASE LA TARJETA PARA RETIRARSE....");
-      Marcar();
+      Reportar();
     }
   }
-  }
 
-  void Marcar() {
+}
+void Reportar() {
+  Serial.println("PASE LA TARJETA....");
   while (!mfrc522.PICC_IsNewCardPresent()) {
     delay(500);
   }
@@ -85,143 +63,37 @@
     }
     uuid += mfrc522.uid.uidByte[i];
   }
-  Serial.println(String(uuid));
-  EnviarDatos(uuid, dato);
-  mfrc522.PICC_HaltA();
-  }
 
-  void menu() {
+  Serial.println("GUARDANDO....");
+  Registrar(uuid, dato);
+
+
+  mfrc522.PICC_HaltA();
+  menu();
+
+  dato = ' ';
+
+}
+
+void menu() {
   Serial.println("========================== MENU =========================");
-  Serial.println("1) INGRESAR");
-  Serial.println("2) REGRESAR");
-  Serial.println("3) SALIDA");
+  Serial.println("1) INGRESO");
+  Serial.println("2) REGRESO");
+  Serial.println("3) SALIR");
   Serial.println("OPCION.....");
-  }
-  void CapturarTexto() {
+}
+void CapturarTexto() {
   if (Serial.available() > 0)
   {
     dato = Serial.read();
   }
-  }
-  void EnviarDatos(String uuid, char estado) {
-
-  SerialESP8266.println("AT+CIPSTART=\"TCP\",\"" + server + "\",80");
-  while (SerialESP8266.available() > 0)
-  {
-    char c = SerialESP8266.read();
-    Serial.write(c);
-  }
-  if ( SerialESP8266.find("OK"))
-  {
-    Serial.println();
-    Serial.println();
-    Serial.println();
-    Serial.println("ESP8266 conectado con el servidor...");
-
-    String peticionHTTP = "GET /api/sistema/acceso/" + String(uuid) + "/" + String(estado);
-    peticionHTTP = peticionHTTP + " HTTP/1.1\r\n";
-    peticionHTTP = peticionHTTP + "Host: www.apicomercial.pvivirtual.com\r\n\r\n";
-
-    SerialESP8266.print("AT+CIPSEND=");
-    SerialESP8266.println(peticionHTTP.length());
-
-    if (SerialESP8266.find(">"))
-    {
-      Serial.println("Enviando HTTP . . .");
-      SerialESP8266.println(peticionHTTP);
-      if ( SerialESP8266.find("SEND OK"))
-      {
-        Serial.println("Peticion HTTP enviada:");
-        Serial.println();
-        Serial.println(peticionHTTP);
-        Serial.println("Esperando respuesta...");
-
-        boolean fin_respuesta = false;
-        long tiempo_inicio = millis();
-        cadena = "";
-
-        while (fin_respuesta == false)
-        {
-          while (SerialESP8266.available() > 0)
-          {
-            char c = SerialESP8266.read();
-            Serial.write(c);
-            cadena.concat(c);
-          }
-
-          if (cadena.length() > 1024)
-          {
-            Serial.println("La respuesta a excedido el tamaÃ±o maximo");
-
-            SerialESP8266.println("AT+CIPCLOSE");
-            if ( SerialESP8266.find("OK"))
-              Serial.println("Conexion finalizada");
-            fin_respuesta = true;
-            dato = ' ';
-            menu();
-
-          }
-          if ((millis() - tiempo_inicio) > 100000)
-          {
-            Serial.println("Tiempo de espera agotado");
-            SerialESP8266.println("AT+CIPCLOSE");
-            if ( SerialESP8266.find("OK"))
-              Serial.println("Conexion finalizada");
-            fin_respuesta = true;
-            dato = ' ';
-            menu();
-
-          }
-          if (cadena.indexOf("CLOSED") > 0)
-          {
-            Serial.println();
-            Serial.println("Cadena recibida correctamente, conexion finalizada");
-            fin_respuesta = true;
-            dato = ' ';
-            menu();
-          }
-        }
-      }
-      else
-      {
-        Serial.println("No se ha podido enviar HTTP.....");
-        dato = ' ';
-        menu();
-      }
-    }
-  }
-  else
-  {
-    Serial.println("No se ha podido conectarse con el servidor");
-    dato = ' ';
-    menu();
-  }
-
-  }*/
-
-#include <SoftwareSerial.h>
-SoftwareSerial BT1(3, 2); // RX | TX
-
-void setup()
-{
-  Serial.begin(9600);
-  BT1.begin(9600);
 }
 
-void loop()
-{
-  String B = "." ;
-  BT1.println("AT");
-  if (BT1.find("OK")) {
-    Serial.println("hola");
-  }
-  if (BT1.available())
-  { char c = BT1.read() ;
-    Serial.print(c);
-  }
-  if (Serial.available())
-  { char c = Serial.read();
-    BT1.print(c);
-  }
-  delay(500);
+void Registrar(String uuid, char estado) {
+  HTTPClient http;
+  http.begin("http://apicomercial.pvivirtual.com/api/sistema/acceso/"+String(uuid)+"/"+String(estado));
+  int httpCode = http.GET();
+  String payload = http.getString();
+  Serial.println(payload);
+  http.end();
 }
