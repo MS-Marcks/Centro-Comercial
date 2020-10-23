@@ -21,15 +21,19 @@ firebase.database().ref("estacionamiento").on("value", (data) => {
             <th scope="row">${cont}</th>
             <td>Estacionamiento ${cont}</td>
             <td>OCUPADO</td>
+            <td><img src="js/stop.png" style="width: 20%;></td>
             </tr>`);
-        } else {
+        }else{
             $("#estacionamiento").append(`
-                <tr>
+                <tr >
             <th scope="row">${cont}</th>
             <td>Estacionamiento ${cont}</td>
             <td>VACIO</td>
+            <td><img src="js/go.png" class=" mx-auto" ></td>
             </tr>`);
         }
+
+        console.log(e.toJSON())
     });
 
 })
@@ -40,14 +44,30 @@ firebase.database().ref("tiendas").on("value", (data) => {
     $("#temperatura tr").remove();
     data.forEach(e => {
         cont++;
-
-        $("#temperatura").append(`
+    
+          if(e.toJSON().temp>30){
+            $("#temperatura").append(`
+            <tr>
+        <th scope="row">${cont}</th>
+        <td>Tienda ${cont}</td>
+        <td>${e.toJSON().hum}</td>
+        <td>${e.toJSON().temp}</td>
+        <td><img src="js/hot.png" class=" mx-auto" ></td>
+        </tr>`);
+            }else{
+                $("#temperatura").append(`
                 <tr>
             <th scope="row">${cont}</th>
             <td>Tienda ${cont}</td>
             <td>${e.toJSON().hum}</td>
             <td>${e.toJSON().temp}</td>
+            <td><img src="js/cold.png" class=" mx-auto" ></td>
             </tr>`);
+            }
+            
+        
+
+        console.log(e.toJSON())
     });
 
 })
@@ -57,10 +77,10 @@ firebase.database().ref("usuario").on("value", (data) => {
     let cont = 0;
     $("#usuario tr").remove();
     data.forEach(e => {
-
+    
         e.forEach(ei => {
             cont++;
-            if (ei.toJSON().estado === "1") {
+            if(ei.toJSON().estado === "1"){
                 $("#usuario").append(`
                 <tr>
             <th scope="row">${ei.toJSON().uuid}</th>
@@ -70,7 +90,7 @@ firebase.database().ref("usuario").on("value", (data) => {
             <td>INGRESO</td>
             <td>${ei.toJSON().descripcion}</td>
             </tr>`);
-            } else if (ei.toJSON().estado === "2") {
+            }else  if(ei.toJSON().estado === "2"){
                 $("#usuario").append(`
                 <tr>
             <th scope="row">${ei.toJSON().uuid}</th>
@@ -80,8 +100,8 @@ firebase.database().ref("usuario").on("value", (data) => {
             <td>REGRESO</td>
             <td>${ei.toJSON().descripcion}</td>
             </tr>`);
-            } else {
-                if (ei.toJSON().estado === "3") {
+            }else{
+                if(ei.toJSON().estado === "3"){
                     $("#usuario").append(`
                     <tr>
                 <th scope="row">${ei.toJSON().uuid}</th>
@@ -93,8 +113,12 @@ firebase.database().ref("usuario").on("value", (data) => {
                 </tr>`);
                 }
             }
+               
+            
+    
+            console.log(ei.toJSON())
         });
-
+          
     });
 
 })
