@@ -15,7 +15,10 @@ import {
   TouchableHighlight,
   Dimensions,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+
+import Icon from 'react-native-vector-icons/FontAwesome';
+const iconNit = (<Icon name="credit-card" size={25} color="#778899" />)
+const iconpass = (<Icon name="unlock" size={25} color="#778899" />)
 import Beacons from 'react-native-beacons-manager';
 import { CargarIbeacoins, CargarProductos, CargarTipo } from './src/LoadData'
 var PushNotification = require('react-native-push-notification')
@@ -108,9 +111,15 @@ class App extends Component {
           </View>
 
           <View style={SInicio.ContenedorInicio}>
-          
-            <TextInput style={SInicio.campos} placeholder="NIT" onChangeText={(user) => this.setState({ user })} value={this.state.user} />
-            <TextInput style={SInicio.campos} secureTextEntry={true} placeholder="Contraseña" onChangeText={(pass) => this.setState({ pass })} value={this.state.pass} />
+            <View style={SInicio.Campos}>
+              <View style={{display:"flex", justifyContent:"center",alignItems:"center"}}>{iconNit}</View>
+              <View><TextInput style={SInicio.campos} placeholder="NIT" onChangeText={(user) => this.setState({ user })} value={this.state.user} /></View>
+            </View>
+            <View style={SInicio.Campos}>
+              <View style={{display:"flex", justifyContent:"center",alignItems:"center"}}>{iconpass}</View>
+              <View><TextInput style={SInicio.campos} secureTextEntry={true} placeholder="Contraseña" onChangeText={(pass) => this.setState({ pass })} value={this.state.pass} /></View>
+            </View>
+
             <TouchableHighlight style={SInicio.btnIniciarSesion} onPress={() => { this.funIniciarSesion() }}>
               <Text style={SInicio.TituloBoton} >Iniciar Sesion</Text>
             </TouchableHighlight>
@@ -278,13 +287,13 @@ export const SInicio = StyleSheet.create({
     backgroundColor: '#3F51B5',
     borderRadius: 4,
     padding: 10,
-    borderWidth: 5, 
+    borderWidth: 5,
     borderColor: '#1A34B2'
-    
+
   },
-  ContenedorInicio:{
+  ContenedorInicio: {
     alignItems: "center",
-    marginTop: Dimensions.get('window').height /6,
+    marginTop: Dimensions.get('window').height / 6,
   },
   contenendor: {
     flex: 1,
@@ -303,7 +312,7 @@ export const SInicio = StyleSheet.create({
     justifyContent: 'center',
   },
   Titulo: {
-  
+
     fontSize: ((Dimensions.get('window').width / 3) / 4),
     color: '#3F51B5'
   },
@@ -328,6 +337,9 @@ export const SInicio = StyleSheet.create({
   TituloBoton: {
     color: 'white',
     fontSize: Dimensions.get('window').width / 15
+  },
+  Campos: {
+    flexDirection: 'row'
   }
 
 });

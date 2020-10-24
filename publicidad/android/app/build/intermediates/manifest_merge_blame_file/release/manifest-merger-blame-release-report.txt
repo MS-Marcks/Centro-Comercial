@@ -1,0 +1,397 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.publicidad"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="16"
+8-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:4:5-67
+11-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:4:22-64
+12    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+12-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:5:5-77
+12-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:5:22-75
+13    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+13-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:6:5-78
+13-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:6:22-76
+14
+15    <!-- < Only if you're using GCM or localNotificationSchedule() > -->
+16    <uses-permission android:name="android.permission.WAKE_LOCK" />
+16-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:9:5-68
+16-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:9:22-65
+17
+18    <permission
+18-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:10:5-12:47
+19        android:name="com.publicidad.permission.C2D_MESSAGE"
+19-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:11:9-61
+20        android:protectionLevel="signature" />
+20-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:12:9-44
+21
+22    <uses-permission android:name="com.publicidad.permission.C2D_MESSAGE" />
+22-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:13:5-77
+22-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:13:22-74
+23    <!-- < Only if you're using GCM or localNotificationSchedule() > -->
+24
+25    <uses-permission android:name="android.permission.VIBRATE" />
+25-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:16:5-66
+25-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:16:22-63
+26    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+26-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:17:5-80
+26-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:17:22-78
+27    <uses-permission
+27-->[:react-native-beacons-manager] C:\PROYECTO_ARQUITECTURA\publicidad\node_modules\react-native-beacons-manager\android\build\intermediates\library_manifest\release\AndroidManifest.xml:11:5-68
+28        android:name="android.permission.BLUETOOTH"
+28-->[:react-native-beacons-manager] C:\PROYECTO_ARQUITECTURA\publicidad\node_modules\react-native-beacons-manager\android\build\intermediates\library_manifest\release\AndroidManifest.xml:11:22-65
+29        android:required="false" />
+29-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:13:9-33
+30    <uses-permission
+30-->[:react-native-beacons-manager] C:\PROYECTO_ARQUITECTURA\publicidad\node_modules\react-native-beacons-manager\android\build\intermediates\library_manifest\release\AndroidManifest.xml:12:5-74
+31        android:name="android.permission.BLUETOOTH_ADMIN"
+31-->[:react-native-beacons-manager] C:\PROYECTO_ARQUITECTURA\publicidad\node_modules\react-native-beacons-manager\android\build\intermediates\library_manifest\release\AndroidManifest.xml:12:22-71
+32        android:required="false" />
+32-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:16:9-33
+33    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
+33-->[:react-native-fs] C:\PROYECTO_ARQUITECTURA\publicidad\node_modules\react-native-fs\android\build\intermediates\library_manifest\release\AndroidManifest.xml:11:5-81
+33-->[:react-native-fs] C:\PROYECTO_ARQUITECTURA\publicidad\node_modules\react-native-fs\android\build\intermediates\library_manifest\release\AndroidManifest.xml:11:22-78
+34    <!-- <uses-sdk android:minSdkVersion="14"/> -->
+35    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+35-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\89a42a17bceb15a6b56920baa9a303ed\transport-backend-cct-2.2.0\AndroidManifest.xml:25:5-79
+35-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\89a42a17bceb15a6b56920baa9a303ed\transport-backend-cct-2.2.0\AndroidManifest.xml:25:22-76
+36    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+36-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\dc5475aee7eac4b420fac8a6d88b8c11\firebase-iid-20.3.0\AndroidManifest.xml:26:5-82
+36-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\dc5475aee7eac4b420fac8a6d88b8c11\firebase-iid-20.3.0\AndroidManifest.xml:26:22-79
+37
+38    <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- for android -->
+38-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:19:5-88
+38-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:19:29-85
+39    <!-- <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/> -->
+40    <!-- <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS"/> -->
+41    <!-- <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" /> -->
+42    <!-- <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" /> -->
+43    <!-- for Samsung -->
+44    <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
+44-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:19:5-86
+44-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:19:22-83
+45    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" /> <!-- for htc -->
+45-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:20:5-87
+45-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:20:22-84
+46    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
+46-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:23:5-81
+46-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:23:22-78
+47    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" /> <!-- for sony -->
+47-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:24:5-83
+47-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:24:22-80
+48    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" />
+48-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:27:5-88
+48-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:27:22-85
+49    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE" /> <!-- for apex -->
+49-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:28:5-92
+49-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:28:22-89
+50    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" /> <!-- for solid -->
+50-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:31:5-84
+50-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:31:22-81
+51    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" /> <!-- for huawei -->
+51-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:34:5-83
+51-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:34:22-80
+52    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
+52-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:37:5-91
+52-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:37:22-88
+53    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
+53-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:38:5-92
+53-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:38:22-89
+54    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" /> <!-- for ZUK -->
+54-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:39:5-93
+54-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:39:22-90
+55    <uses-permission android:name="android.permission.READ_APP_BADGE" /> <!-- for OPPO -->
+55-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:42:5-73
+55-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:42:22-70
+56    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS" />
+56-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:45:5-82
+56-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:45:22-79
+57    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS" /> <!-- for EvMe -->
+57-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:46:5-83
+57-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:46:22-80
+58    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ" />
+58-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:49:5-88
+58-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:49:22-85
+59    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
+59-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:50:5-89
+59-->[me.leolin:ShortcutBadger:1.1.22] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\d84c8b03d51d0277116a184f8255f4d2\ShortcutBadger-1.1.22\AndroidManifest.xml:50:22-86
+60
+61    <application
+61-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:19:5-68:19
+62        android:name="com.publicidad.MainApplication"
+62-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:20:7-38
+63        android:allowBackup="false"
+63-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:24:7-34
+64        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+64-->[androidx.core:core:1.1.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\639e914bfc1efa21e36199d3ff2c5eef\core-1.1.0\AndroidManifest.xml:24:18-86
+65        android:icon="@mipmap/ic_launcher"
+65-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:22:7-41
+66        android:label="@string/app_name"
+66-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:21:7-39
+67        android:roundIcon="@mipmap/ic_launcher_round"
+67-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:23:7-52
+68        android:theme="@style/AppTheme" >
+68-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:25:7-38
+69        <activity
+69-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:26:7-36:18
+70            android:name="com.publicidad.MainActivity"
+70-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:27:9-37
+71            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+71-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:29:9-86
+72            android:label="@string/app_name"
+72-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:28:9-41
+73            android:launchMode="singleTask"
+73-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:30:9-40
+74            android:windowSoftInputMode="adjustResize" >
+74-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:31:9-51
+75            <intent-filter>
+75-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:32:9-35:25
+76                <action android:name="android.intent.action.MAIN" />
+76-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:33:13-65
+76-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:33:21-62
+77
+78                <category android:name="android.intent.category.LAUNCHER" />
+78-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:34:13-73
+78-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:34:23-70
+79            </intent-filter>
+80        </activity>
+81        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+81-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:37:7-84
+81-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:37:17-81
+82
+83        <meta-data
+83-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:38:7-39:61
+84            android:name="com.dieam.reactnativepushnotification.notification_channel_name"
+84-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:38:19-97
+85            android:value="YOUR NOTIFICATION CHANNEL NAME" />
+85-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:39:13-59
+86        <meta-data
+86-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:40:9-41:68
+87            android:name="com.dieam.reactnativepushnotification.notification_channel_description"
+87-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:40:21-106
+88            android:value="YOUR NOTIFICATION CHANNEL DESCRIPTION" />
+88-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:41:13-66
+89
+90        <!-- Change the value to true to enable pop-up for in foreground (remote-only, for local use ignoreInForeground) -->
+91        <meta-data
+91-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:44:9-45:36
+92            android:name="com.dieam.reactnativepushnotification.notification_foreground"
+92-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:44:21-97
+93            android:value="false" />
+93-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:45:13-34
+94        <!-- Change the value to false if you don't want the creation of the default channel -->
+95        <meta-data
+95-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:47:9-48:35
+96            android:name="com.dieam.reactnativepushnotification.channel_create_default"
+96-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:47:21-96
+97            android:value="true" />
+97-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:48:13-33
+98        <!-- Change the resource name to your App's accent color - or any other color you want -->
+99        <meta-data
+99-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:50:9-51:46
+100            android:name="com.dieam.reactnativepushnotification.notification_color"
+100-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:50:21-92
+101            android:resource="@color/white" /> <!-- or @android:color/{name} to use a standard color -->
+101-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:51:13-44
+102
+103        <receiver android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationActions" />
+103-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:53:9-108
+103-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:53:19-105
+104        <receiver android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationPublisher" />
+104-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:54:9-110
+104-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:54:19-107
+105        <receiver android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationBootEventReceiver" >
+105-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:55:9-59:20
+105-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:55:19-115
+106            <intent-filter>
+106-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:56:13-58:29
+107                <action android:name="android.intent.action.BOOT_COMPLETED" />
+107-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:57:17-79
+107-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:57:25-76
+108            </intent-filter>
+109        </receiver>
+110
+111        <service
+111-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:61:9-67:19
+112            android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationListenerService"
+112-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:62:13-107
+113            android:exported="false" >
+113-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:63:13-37
+114            <intent-filter>
+114-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:64:13-66:29
+115                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+115-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:65:17-78
+115-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:65:25-75
+116            </intent-filter>
+117        </service>
+118        <!--
+119             FirebaseMessagingService performs security checks at runtime,
+120             but set to not exported to explicitly avoid allowing another app to call it.
+121        -->
+122        <service
+122-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\124d478d672b941ed436880b4a108855\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:28:9-35:19
+123            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+123-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\124d478d672b941ed436880b4a108855\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:29:13-82
+124            android:directBootAware="true"
+124-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\124d478d672b941ed436880b4a108855\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:30:13-43
+125            android:exported="false" >
+125-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\124d478d672b941ed436880b4a108855\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:31:13-37
+126            <intent-filter android:priority="-500" >
+126-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:64:13-66:29
+127                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+127-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:65:17-78
+127-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:65:25-75
+128            </intent-filter>
+129        </service>
+130        <service
+130-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\124d478d672b941ed436880b4a108855\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:36:9-42:19
+131            android:name="com.google.firebase.components.ComponentDiscoveryService"
+131-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\124d478d672b941ed436880b4a108855\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:37:13-84
+132            android:directBootAware="true"
+132-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\c7b7569b83c123ca61bb1d61fc64b782\jetified-firebase-common-19.3.0\AndroidManifest.xml:34:13-43
+133            android:exported="false" >
+133-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\124d478d672b941ed436880b4a108855\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:38:13-37
+134            <meta-data
+134-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\124d478d672b941ed436880b4a108855\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:39:13-41:85
+135                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+135-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\124d478d672b941ed436880b4a108855\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:40:17-119
+136                android:value="com.google.firebase.components.ComponentRegistrar" />
+136-->[com.google.firebase:firebase-messaging:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\124d478d672b941ed436880b4a108855\jetified-firebase-messaging-20.3.0\AndroidManifest.xml:41:17-82
+137            <meta-data
+137-->[com.google.firebase:firebase-datatransport:17.0.3] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\3b1ff57592697a98393cd0fe02e9582b\firebase-datatransport-17.0.3\AndroidManifest.xml:28:13-30:85
+138                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+138-->[com.google.firebase:firebase-datatransport:17.0.3] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\3b1ff57592697a98393cd0fe02e9582b\firebase-datatransport-17.0.3\AndroidManifest.xml:29:17-115
+139                android:value="com.google.firebase.components.ComponentRegistrar" />
+139-->[com.google.firebase:firebase-datatransport:17.0.3] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\3b1ff57592697a98393cd0fe02e9582b\firebase-datatransport-17.0.3\AndroidManifest.xml:30:17-82
+140            <meta-data
+140-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\dc5475aee7eac4b420fac8a6d88b8c11\firebase-iid-20.3.0\AndroidManifest.xml:32:13-34:85
+141                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+141-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\dc5475aee7eac4b420fac8a6d88b8c11\firebase-iid-20.3.0\AndroidManifest.xml:33:17-96
+142                android:value="com.google.firebase.components.ComponentRegistrar" />
+142-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\dc5475aee7eac4b420fac8a6d88b8c11\firebase-iid-20.3.0\AndroidManifest.xml:34:17-82
+143            <meta-data
+143-->[com.google.firebase:firebase-installations:16.3.3] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\2c97c52c0f86c2302fb2c467e2ddf2d5\firebase-installations-16.3.3\AndroidManifest.xml:17:13-19:85
+144                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+144-->[com.google.firebase:firebase-installations:16.3.3] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\2c97c52c0f86c2302fb2c467e2ddf2d5\firebase-installations-16.3.3\AndroidManifest.xml:18:17-127
+145                android:value="com.google.firebase.components.ComponentRegistrar" />
+145-->[com.google.firebase:firebase-installations:16.3.3] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\2c97c52c0f86c2302fb2c467e2ddf2d5\firebase-installations-16.3.3\AndroidManifest.xml:19:17-82
+146        </service>
+147        <service
+147-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\89a42a17bceb15a6b56920baa9a303ed\transport-backend-cct-2.2.0\AndroidManifest.xml:29:9-35:19
+148            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+148-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\89a42a17bceb15a6b56920baa9a303ed\transport-backend-cct-2.2.0\AndroidManifest.xml:30:13-103
+149            android:exported="false" >
+149-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\89a42a17bceb15a6b56920baa9a303ed\transport-backend-cct-2.2.0\AndroidManifest.xml:31:13-37
+150            <meta-data
+150-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\89a42a17bceb15a6b56920baa9a303ed\transport-backend-cct-2.2.0\AndroidManifest.xml:32:13-34:39
+151                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+151-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\89a42a17bceb15a6b56920baa9a303ed\transport-backend-cct-2.2.0\AndroidManifest.xml:33:17-94
+152                android:value="cct" />
+152-->[com.google.android.datatransport:transport-backend-cct:2.2.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\89a42a17bceb15a6b56920baa9a303ed\transport-backend-cct-2.2.0\AndroidManifest.xml:34:17-36
+153        </service>
+154        <service
+154-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\07c4d8693df29619e2544e6a1af31ce8\transport-runtime-2.2.0\AndroidManifest.xml:26:9-30:19
+155            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+155-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\07c4d8693df29619e2544e6a1af31ce8\transport-runtime-2.2.0\AndroidManifest.xml:27:13-117
+156            android:exported="false"
+156-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\07c4d8693df29619e2544e6a1af31ce8\transport-runtime-2.2.0\AndroidManifest.xml:28:13-37
+157            android:permission="android.permission.BIND_JOB_SERVICE" >
+157-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\07c4d8693df29619e2544e6a1af31ce8\transport-runtime-2.2.0\AndroidManifest.xml:29:13-69
+158        </service>
+159
+160        <receiver
+160-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\07c4d8693df29619e2544e6a1af31ce8\transport-runtime-2.2.0\AndroidManifest.xml:32:9-34:40
+161            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+161-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\07c4d8693df29619e2544e6a1af31ce8\transport-runtime-2.2.0\AndroidManifest.xml:33:13-132
+162            android:exported="false" />
+162-->[com.google.android.datatransport:transport-runtime:2.2.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\07c4d8693df29619e2544e6a1af31ce8\transport-runtime-2.2.0\AndroidManifest.xml:34:13-37
+163        <receiver
+163-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\dc5475aee7eac4b420fac8a6d88b8c11\firebase-iid-20.3.0\AndroidManifest.xml:37:9-44:20
+164            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+164-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\dc5475aee7eac4b420fac8a6d88b8c11\firebase-iid-20.3.0\AndroidManifest.xml:38:13-78
+165            android:exported="true"
+165-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\dc5475aee7eac4b420fac8a6d88b8c11\firebase-iid-20.3.0\AndroidManifest.xml:39:13-36
+166            android:permission="com.google.android.c2dm.permission.SEND" >
+166-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\dc5475aee7eac4b420fac8a6d88b8c11\firebase-iid-20.3.0\AndroidManifest.xml:40:13-73
+167            <intent-filter>
+167-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\dc5475aee7eac4b420fac8a6d88b8c11\firebase-iid-20.3.0\AndroidManifest.xml:41:13-43:29
+168                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+168-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\dc5475aee7eac4b420fac8a6d88b8c11\firebase-iid-20.3.0\AndroidManifest.xml:42:17-81
+168-->[com.google.firebase:firebase-iid:20.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\dc5475aee7eac4b420fac8a6d88b8c11\firebase-iid-20.3.0\AndroidManifest.xml:42:25-78
+169            </intent-filter>
+170        </receiver>
+171
+172        <provider
+172-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\c7b7569b83c123ca61bb1d61fc64b782\jetified-firebase-common-19.3.0\AndroidManifest.xml:26:9-30:39
+173            android:name="com.google.firebase.provider.FirebaseInitProvider"
+173-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\c7b7569b83c123ca61bb1d61fc64b782\jetified-firebase-common-19.3.0\AndroidManifest.xml:27:13-77
+174            android:authorities="com.publicidad.firebaseinitprovider"
+174-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\c7b7569b83c123ca61bb1d61fc64b782\jetified-firebase-common-19.3.0\AndroidManifest.xml:28:13-72
+175            android:exported="false"
+175-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\c7b7569b83c123ca61bb1d61fc64b782\jetified-firebase-common-19.3.0\AndroidManifest.xml:29:13-37
+176            android:initOrder="100" />
+176-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\c7b7569b83c123ca61bb1d61fc64b782\jetified-firebase-common-19.3.0\AndroidManifest.xml:30:13-36
+177
+178        <activity
+178-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\fc8046cb9a5df9499609a5f7f8270b1b\play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
+179            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+179-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\fc8046cb9a5df9499609a5f7f8270b1b\play-services-base-17.0.0\AndroidManifest.xml:24:13-79
+180            android:exported="false"
+180-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\fc8046cb9a5df9499609a5f7f8270b1b\play-services-base-17.0.0\AndroidManifest.xml:25:13-37
+181            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+181-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\fc8046cb9a5df9499609a5f7f8270b1b\play-services-base-17.0.0\AndroidManifest.xml:26:13-72
+182
+183        <meta-data
+183-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\1ff9f07e90e1a219c3921ad5ad35c801\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+184            android:name="com.google.android.gms.version"
+184-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\1ff9f07e90e1a219c3921ad5ad35c801\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+185            android:value="@integer/google_play_services_version" />
+185-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\1ff9f07e90e1a219c3921ad5ad35c801\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+186
+187        <receiver android:name="org.altbeacon.beacon.startup.StartupBroadcastReceiver" >
+187-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:22:9-28:20
+187-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:22:19-87
+188            <intent-filter>
+188-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:23:13-27:29
+189                <action android:name="android.intent.action.BOOT_COMPLETED" />
+189-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:57:17-79
+189-->C:\PROYECTO_ARQUITECTURA\publicidad\android\app\src\main\AndroidManifest.xml:57:25-76
+190                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+190-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:25:17-87
+190-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:25:25-84
+191                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+191-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:26:17-90
+191-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:26:25-87
+192            </intent-filter>
+193        </receiver>
+194
+195        <service
+195-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:30:9-35:38
+196            android:name="org.altbeacon.beacon.service.BeaconService"
+196-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:31:13-70
+197            android:enabled="true"
+197-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:32:13-35
+198            android:exported="false"
+198-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:33:13-37
+199            android:isolatedProcess="false"
+199-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:34:13-44
+200            android:label="beacon" />
+200-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:35:13-35
+201        <service
+201-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:36:9-39:40
+202            android:name="org.altbeacon.beacon.BeaconIntentProcessor"
+202-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:37:13-70
+203            android:enabled="true"
+203-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:38:13-35
+204            android:exported="false" />
+204-->[org.altbeacon:android-beacon-library:2.9.2] C:\Users\Gerson Ramos\.gradle\caches\transforms-2\files-2.1\ccda7db581daafe7a5e8826abd15dd42\android-beacon-library-2.9.2\AndroidManifest.xml:39:13-37
+205    </application>
+206
+207</manifest>

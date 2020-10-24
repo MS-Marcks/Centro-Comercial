@@ -64,7 +64,7 @@ void setup() {
   pinMode(trigPuertaPin, OUTPUT);
   pinMode(echoEstacionPin, INPUT);
 
-  servoMotorEstacion.write(0);
+  servoMotorEstacion.write(90);
   servoMotorPuerta.write(0);
 }
 
@@ -112,16 +112,16 @@ void fun_ServoEstacionamiento(struct pt *pt) {
   static long t = 0;
   do {
     if (HabilitarEstacion == true && habilitoEstacion == false) {
-      for (iE = 0; iE <= 90 ; iE += 15) {
+      for (iE = 90; iE >= 0 ; iE -= 15) {
         servoMotorEstacion.write(iE);
         t = millis(); PT_WAIT_WHILE(pt, (millis() - t) < 100);
       }
       habilitoEstacion = true;
     } else if (HabilitarEstacion == false && habilitoEstacion == true) {
       t = millis(); PT_WAIT_WHILE(pt, (millis() - t) < 5000);
-      for (kE = 90; kE >= 0 ; kE -= 15) {
+      for (kE = 0; kE <= 90 ; kE += 15) {
         servoMotorEstacion.write(kE);
-        t = millis(); PT_WAIT_WHILE(pt, (millis() - t) < 100);
+        t = millis(); PT_WAIT_WHILE(pt, (millis() -  t) < 100);
       }
       habilitoEstacion = false;
     }
